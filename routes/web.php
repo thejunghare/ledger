@@ -49,6 +49,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     return view('/budgets/set');
 }); */
 
-//store budget
+ Route::get('/b/create', function () {
+    return view('/budgets/store');
+});
+
+//show budget
 Route::get('/b', 'App\Http\Controllers\BudgetController@show');
+//store budget
 Route::post('/b', 'App\Http\Controllers\BudgetController@store');
