@@ -7,7 +7,6 @@
 <body>
     <div id="app">
         @include('layouts.nav')
-
         <main class="">
             <div id="layoutSidenav">
                 @include('layouts.side-nav')
@@ -17,8 +16,6 @@
                 </div>
             </div>
         </main>
-
-
         @include('layouts.script')
     </div>
 
