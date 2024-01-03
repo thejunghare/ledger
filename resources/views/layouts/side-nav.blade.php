@@ -3,7 +3,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/home">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
@@ -11,7 +11,7 @@
                 </a>
                 <div class="sb-sidenav-menu-heading">Features</div>
                 <!-- Budgets -->
-                <a class="nav-link" href="/set/budget">
+                <a class="nav-link" href="/b">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-chart-area"></i>
                     </div>

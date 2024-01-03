@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected
-        $fillable = [
+    $fillable = [
         'name',
         'email',
         'password',
@@ -31,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected
-        $hidden = [
+    $hidden = [
         'password',
         'remember_token',
     ];
@@ -42,8 +42,15 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<string, string>
      */
     protected
-        $casts = [
+    $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class)->orderBy('created_at','DESC');
+    }
+
+
 }

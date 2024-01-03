@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\BudgetController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // budget
-Route::get('/set/budget', function () {
-    return view('/budget/set');
-});
+/* Route::get('/b', function () {
+    return view('/budgets/set');
+}); */
+
+//store budget
+Route::get('/b', 'App\Http\Controllers\BudgetController@show');
+Route::post('/b', 'App\Http\Controllers\BudgetController@store');
