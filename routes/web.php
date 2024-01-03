@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('/auth/login');
+    return view('welcome');
 });
 
 Route::get('/email/verify', function () {
