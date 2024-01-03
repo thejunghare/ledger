@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 |
 */
 
+// index page
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,7 +30,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-//resend verification mail 
+//resend verification mail
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 
@@ -38,4 +39,10 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 Auth::routes();
 
+// Dashboard
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// budget
+Route::get('/set/budget', function () {
+    return view('/budget/set');
+});

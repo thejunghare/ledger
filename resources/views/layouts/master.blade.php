@@ -6,7 +6,7 @@
 
 <body>
     <div id="app">
-        @include('layouts.nav')
+        @include('layouts.login-nav')
 
         <main class="">
             <div id="layoutSidenav">
@@ -16,6 +16,7 @@
                     @include('layouts.footer')
                 </div>
             </div>
+
         </main>
 
 
