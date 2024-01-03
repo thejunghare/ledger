@@ -18,7 +18,7 @@
                     Budgets
                 </a>
                 <!--Transactions -->
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/t">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Transactions
                 </a>

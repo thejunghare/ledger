@@ -49,7 +49,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     return view('/budgets/set');
 }); */
 
- Route::get('/b/create', function () {
+// add budget
+Route::get('/b/create', function () {
     return view('/budgets/store');
 });
 
@@ -57,3 +58,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/b', 'App\Http\Controllers\BudgetController@show');
 //store budget
 Route::post('/b', 'App\Http\Controllers\BudgetController@store');
+
+// add tansaction
+Route::get('/t/create', function () {
+    return view('/transactions/store');
+});
+
+//show tansaction
+Route::get('/t', 'App\Http\Controllers\TransactionController@show');
+//store tansaction
+// Route::post('/t', 'App\Http\Controllers\TransactionController@store');
