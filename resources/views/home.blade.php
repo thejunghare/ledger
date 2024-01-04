@@ -45,6 +45,49 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Recent Transaction
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Sr.No</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Category</th>
+                                <th>Paymode</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Sr.No</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Category</th>
+                                <th>Paymode</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                           {{--  @if ($transactions->isEmpty())
+                                <p>No transactions available.</p>
+                            @else
+                                @foreach ($transactions as $transaction)
+                                    <tr>
+                                        <td>1</td>
+                                        <td>{{ $transaction->date }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif --}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </main>
 @endsection

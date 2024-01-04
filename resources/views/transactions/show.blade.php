@@ -27,7 +27,10 @@
                             <div class="card mb-4">
                                 <div class="card-body d-flex justify-content-between">
                                     <div>{{ $transaction->date }}</div>
-                                    <div> <span>₹</span> {{ $transaction->amount }}</div>
+                                    <div>
+                                        <span
+                                            class="{{ $transaction->type === 'Expense' ? 'text-danger' : 'text-success' }}">₹{{ $transaction->amount }}</span>
+                                    </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small stretched-link " href="#">Transaction Analysis</a>
