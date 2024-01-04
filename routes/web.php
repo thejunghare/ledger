@@ -67,4 +67,4 @@ Route::get('/t/create', function () {
 //show tansaction
 Route::get('/t', 'App\Http\Controllers\TransactionController@show');
 //store tansaction
-// Route::post('/t', 'App\Http\Controllers\TransactionController@store');
+Route::post('/t', 'App\Http\Controllers\TransactionController@store');

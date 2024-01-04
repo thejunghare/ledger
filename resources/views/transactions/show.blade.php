@@ -22,15 +22,15 @@
                 @if ($transactions->isEmpty())
                     <p>No transactions available.</p>
                 @else
-                    @foreach ($budgets as $budget)
+                    @foreach ($transactions as $transaction)
                         <div class="col-xl-3 col-md-6">
                             <div class="card mb-4">
                                 <div class="card-body d-flex justify-content-between">
-                                    <div>{{ $budget->date }}</div>
-                                    <div> <span>₹</span> {{ $budget->amount }}</div>
+                                    <div>{{ $transaction->date }}</div>
+                                    <div> <span>₹</span> {{ $transaction->amount }}</div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small stretched-link " href="#">Budget Analysis</a>
+                                    <a class="small stretched-link " href="#">Transaction Analysis</a>
                                     <div class="small">
                                         <i class="fas fa-pencil text-success me-3"></i>
                                         <i class="fas fa-trash text-danger"></i>

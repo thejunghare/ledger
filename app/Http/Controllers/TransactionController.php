@@ -40,7 +40,7 @@ class TransactionController extends Controller
 
     public function show(Transaction $transaction)
     {
-        //dd($budget);
+        // dd($budget);
         $transactions = Transaction::orderBy('date', 'desc')->get();
         return view('transactions.show', compact('transactions'));
     }
