@@ -13,11 +13,11 @@ class BudgetController extends Controller
         $this->middleware("auth");
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $data = request()->validate([
+        $data = $request->validate([
             'date' => 'required',
-            'amount' => 'required'
+            'amount' => 'required|numeric|min:1'
         ]);
 
         //dd(request()->all());
