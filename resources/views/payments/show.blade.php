@@ -8,6 +8,10 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Features</li>
         </ol>
+        <div class=" d-flex justify-content-center align-item-center">
+            <img src="/assets/workinprogreess.svg" class="w-25"
+                 alt="comming soon...!">
+        </div>
 
 
     </div>
