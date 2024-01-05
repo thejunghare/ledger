@@ -68,3 +68,13 @@ Route::get('/t/create', function () {
 Route::get('/t', 'App\Http\Controllers\TransactionController@show');
 //store tansaction
 Route::post('/t', 'App\Http\Controllers\TransactionController@store');
+
+//about page
+Route::get('/a', function () {
+    return view('/about/show');
+});
+
+//payments page
+Route::get('/p', function () {
+    return view('/payments/show');
+});

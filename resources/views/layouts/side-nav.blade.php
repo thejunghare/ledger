@@ -22,8 +22,13 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Transactions
                 </a>
-                <!--Transactions -->
-                <a class="nav-link" href="tables.html">
+                <!--Payment -->
+                <a class="nav-link" href="/p">
+                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    Payments
+                </a>
+                <!--About Page -->
+                <a class="nav-link" href="/a">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     About App
                 </a>
