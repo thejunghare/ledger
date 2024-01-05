@@ -13,7 +13,7 @@
                 <!-- Budgets -->
                 <a class="nav-link" href="/b">
                     <div class="sb-nav-link-icon">
-                        <i class="fas fa-chart-area"></i>
+                        <i class="fa-solid fa-basket-shopping"></i>
                     </div>
                     Budgets
                 </a>
@@ -24,12 +24,12 @@
                 </a>
                 <!--Payment -->
                 <a class="nav-link" href="/p">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-money-check-dollar"></i></div>
                     Payments
                 </a>
                 <!--About Page -->
                 <a class="nav-link" href="/a">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-info"></i></div>
                     About App
                 </a>
             </div>
