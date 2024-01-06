@@ -58,6 +58,9 @@ Route::get('/b/create', function () {
 Route::get('/b', 'App\Http\Controllers\BudgetController@show');
 //store budget
 Route::post('/b', 'App\Http\Controllers\BudgetController@store');
+//destory budget
+Route::delete('/b/{budget}', BudgetController::class . '@destroy')->name('budget.destroy');
+
 
 // add tansaction
 Route::get('/t/create', function () {
