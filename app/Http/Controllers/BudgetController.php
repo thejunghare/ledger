@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Budget;
+use App\Models\User;
 
 class BudgetController extends Controller
 {
-//todo: make sure only auth user does budget stuff
+
+    //todo: make sure only auth user does budget stuff
     public function __construct()
     {
         $this->middleware("auth");
     }
 
 
-//todo: store budget in db
+    //todo: store budget in db
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -35,7 +37,7 @@ class BudgetController extends Controller
 
     }
 
-//todo: fetch budgets from db
+    //todo: fetch budgets from db
     public function show(Budget $budget)
     {
         //dd($budget);
@@ -43,7 +45,7 @@ class BudgetController extends Controller
         return view('budgets.show', compact('budgets'));
     }
 
-//todo: delete budget from db
+    //todo: delete budget from db
     public function destroy($id)
     {
         $budget = Budget::find($id);

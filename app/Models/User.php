@@ -47,6 +47,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+
+
+
     public function budgets()
     {
         return $this->hasMany(Budget::class)->orderBy('created_at', 'DESC');

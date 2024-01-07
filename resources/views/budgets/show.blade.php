@@ -46,7 +46,9 @@
                     <div class="card-body d-flex justify-content-between">
                         <div>{{ $budget->date }}</div>
                         <div><span>₹</span> {{ $budget->amount }}</div>
-                        <div>{{ $budget->id }}</div>
+                        {{--
+                        <div>{{ $count }}</div>
+                        --}}
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small stretched-link " href="#">Budget Analysis</a>

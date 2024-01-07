@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -44,6 +45,13 @@ class TransactionController extends Controller
         // dd($budget);
         $transactions = Transaction::orderBy('date', 'desc')->get();
         return view('transactions.show', compact('transactions'));
+    }
+
+    public function index(User $user)
+    {
+        $user = User::withCount('transactions')->find($user);
+        $count = $user->transactions_count;
+        return view('home', compact('count'));
     }
 
 }
