@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -32,9 +34,20 @@ class HomeController extends Controller
         $transactioncount = $user->transactions->count();
         $transactions = $user->transactions;
 
+        // get total
+        $userId = Auth::id();
+
+        $totalIncomeAmount = Transaction::where('user_id', $userId)
+            ->where('type', 'income')
+            ->sum('amount');
+
+        $totalExpenseAmount = Transaction::where('user_id', $userId)
+            ->where('type', 'Expense')
+            ->sum('amount');
+
         // get the budget count
         $budgetcount = $user->budgets->count();
-        return view('home', compact('transactioncount', 'budgetcount', 'transactions'));
+        return view('home', compact('transactioncount', 'budgetcount', 'transactions', 'totalIncomeAmount', 'totalExpenseAmount'));
     }
 }
 
