@@ -18,55 +18,9 @@
                 <li class="breadcrumb-item active">Features</li>
             </ol>
 
-            <!-- form -->
-            {{--
-        <form class="" method="post" action="/b">
-            @csrf
-            <div class="mb-3">
-                <label for="basic-url" class="form-label">Set Budget</label>
-                <div class="input-group mb-3">
-                    <input type="date" class="form-control" name="date" placeholder="Date" aria-label="Username">
-                    <span class="input-group-text">₹</span>
-                    <input type="text" class="form-control" name="amount"
-                           aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-text">.00</span>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Add budget</button>
-        </form>
-        --}}
-
-            {{-- <div class="row py-4">
-                @if ($budgets->isEmpty())
-                    <p>No budgets available.</p>
-                @else
-                    @foreach ($budgets as $budget)
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card mb-4">
-                                <div class="card-body d-flex justify-content-between">
-                                    <div>{{ $budget->date }}</div>
-                                    <div><span>₹</span> {{ $budget->amount }}</div>
-
-                                </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small stretched-link " href="/b/{{ $budget->id }}">Budget Details</a>
-                                    <div class="small d-flex align-items-center">
-                                        <i class="fas fa-pencil text-success me-3"></i>
-                                        <!--trash budget-->
-                                        <!--<a href="/b/{budgets}"> <i class="fas fa-trash text-danger"></i></a> -->
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
-
-            </div> --}}
-
             <div class="row py-4">
                 @if ($budgets->isEmpty())
-                    <p>No transactions available.</p>
+                    <p>No budgets available.</p>
                 @else
                     @foreach ($budgets as $budget)
                         <div class="col-xl-3 col-md-6 ">
@@ -80,7 +34,6 @@
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-decoration-none " href="/b/{{ $budget->id }}">Details</a>
                                     <div class="small d-flex align-items-center">
-                                        
                                         <form action="/b/{{ $budget->id }}" method="post">
                                             @csrf
                                             @method('DELETE')
