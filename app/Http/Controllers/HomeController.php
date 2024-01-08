@@ -30,10 +30,11 @@ class HomeController extends Controller
 
         // get the transaction count
         $transactioncount = $user->transactions->count();
+        $transactions = $user->transactions;
 
         // get the budget count
         $budgetcount = $user->budgets->count();
-        return view('home', compact('transactioncount', 'budgetcount'));
+        return view('home', compact('transactioncount', 'budgetcount', 'transactions'));
     }
 }
 

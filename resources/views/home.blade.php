@@ -79,16 +79,32 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- @if ($transactions->isEmpty())
-                    <p>No transactions available.</p>
-                    @else
-                    @foreach ($transactions as $transamainction)
-                    <tr>
-                        <td>1</td>
-                        <td>{{ $transaction->date }}</td>
-                    </tr>
-                    @endforeach
-                    @endif --}}
+                            @if ($transactions->isEmpty())
+                                <p>No transactions available.</p>
+                            @else
+                                @php
+                                    $serialNumber = 1;
+                                @endphp
+                                @foreach ($transactions as $transaction)
+                                    <tr>
+                                        <td>{{ $serialNumber }}</td>
+                                        <td>
+                                            @if ($transaction->type === 'Expense')
+                                                <p class="text-danger mb-0">{{ $transaction->type }}</p>
+                                            @else
+                                                <p class="text-success mb-0">{{ $transaction->type }}</p>
+                                            @endif
+                                        </td>
+                                        <td>{{ $transaction->date }}</td>
+                                        <td>{{ $transaction->amount }}</td>
+                                        <td>{{ $transaction->category }}</td>
+                                        <td>{{ $transaction->paymode }}</td>
+                                    </tr>
+                                    @php
+                                        $serialNumber++;
+                                    @endphp
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
