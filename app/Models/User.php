@@ -52,11 +52,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function budgets()
     {
-        return $this->hasMany(Budget::class)->orderBy('created_at', 'DESC');
+        return $this->hasMany(Budget::class);
     }
 
     public function transactions()
     {
-        return $this->hasMany(Transaction::class)->orderBy('created_at', 'DESC');
+        return $this->hasMany(Transaction::class);
     }
 }

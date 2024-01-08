@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -81,3 +82,6 @@ Route::get('/a', function () {
 Route::get('/p', function () {
     return view('/payments/show');
 });
+
+Route::get('/user/{user}', [ProfileController::class, 'index']);
+
