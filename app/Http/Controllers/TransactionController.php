@@ -47,14 +47,16 @@ class TransactionController extends Controller
 
     }
 
-    public function show(Transaction $transaction)
+    public function show($transactions)
     {
+        $getTransactionsId = Transaction::find($transactions);
 
-        // dd($budget);
-        /* $transactions = Transaction::orderBy('date', 'desc')->get();
-        return view('transactions.show', compact('transactions')); */
+        if (!$getTransactionsId) {
+            return response()->json(['ID not found'], 404);
+        }
+
+        //return response()->json($getTransactionsId);
+
+        return view('transactions.see', compact('getTransactionsId'));
     }
-
-
-
 }

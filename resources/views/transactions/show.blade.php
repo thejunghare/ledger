@@ -23,7 +23,7 @@
                     <p>No transactions available.</p>
                 @else
                     @foreach ($transactions as $transaction)
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6 ">
                             <div class="card mb-4">
                                 <div class="card-body d-flex justify-content-between">
                                     <div>{{ $transaction->date }}</div>
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small stretched-link " href="#">Transaction Analysis</a>
+                                    <a class="small text-decoration-none " href="/t/{{ $transaction->id }}">Details</a>
                                     <div class="small">
                                         <i class="fas fa-pencil text-success me-3"></i>
                                         <i class="fas fa-trash text-danger"></i>

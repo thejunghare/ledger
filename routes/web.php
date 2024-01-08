@@ -56,9 +56,8 @@ Route::get('/b/create', function () {
     return view('/budgets/store');
 });
 
-//show budget
+//show all budget
 Route::get('/b', [BudgetController::class, 'index'])->name('budgets.index');
-// Route::get('/b', 'App\Http\Controllers\BudgetController@show');
 //store budget
 Route::post('/b', 'App\Http\Controllers\BudgetController@store');
 //destory budget
@@ -70,9 +69,10 @@ Route::get('/t/create', function () {
     return view('/transactions/store');
 });
 
-//show tansaction
+//show all tansaction
 Route::get('/t', [TransactionController::class, 'index'])->name('transaction.index');
-// Route::get('/t', 'App\Http\Controllers\TransactionController@show');
+// show single transaction
+Route::get('/t/{transactions}', [TransactionController::class, 'show'])->name('transactions.show');
 //store tansaction
 Route::post('/t', 'App\Http\Controllers\TransactionController@store');
 
@@ -85,6 +85,4 @@ Route::get('/a', function () {
 Route::get('/p', function () {
     return view('/payments/show');
 });
-
-Route::get('/user/{user}', [ProfileController::class, 'index']);
 
