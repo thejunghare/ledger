@@ -47,6 +47,25 @@ class TransactionController extends Controller
 
     }
 
+    // todo: see single transaction
+    public function show($transaction)
+    {
+        $getTransaction = Transaction::query()
+            ->where('id', $transaction)
+            ->where('user_id', Auth::Id())
+            ->first();
+
+        // dd($getId, Auth::user());
+
+
+        if (!$getTransaction) {
+            return response()->json(['ID not found'], 404);
+        }
+
+        // return response()->json($getId);
+        return view('transactions.see', compact('getTransaction'));
+    }
+
     //todo: delete budget from db
     public function destroy($transactions)
     {
