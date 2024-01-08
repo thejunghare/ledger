@@ -17,6 +17,7 @@ class BudgetController extends Controller
         $this->middleware("auth");
     }
 
+    // todo: display budgets
     public function index()
     {
         $user = Auth::user(); // logged in user
@@ -45,15 +46,17 @@ class BudgetController extends Controller
 
     }
 
-    //todo: fetch budgets from db
-    public function show(Budget $budget)
+    //todo: get single budgets
+    public function show($budget)
     {
-        //dd($budget);
+        $getId = Budget::find($budget);
 
-        /* $budgets = Budget::orderBy('date', 'desc')->get();
-        return view('budgets.show', compact('budgets')); */
+        if (!$getId) {
+            return response()->json(['ID not found'], 404);
+        }
 
-        return view('budgets.show', compact('budget'));
+        // return response()->json($getId);
+        return view('budgets.see', compact('getId'));
     }
 
     //todo: delete budget from db

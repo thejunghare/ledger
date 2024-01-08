@@ -51,7 +51,7 @@
                         --}}
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small stretched-link " href="#">Budget Analysis</a>
+                        <a class="small stretched-link " href="/b/{{ $budget->id }}">Budget Details</a>
                         <div class="small">
                             <i class="fas fa-pencil text-success me-3"></i>
                             <!--trash budget-->

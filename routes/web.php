@@ -58,6 +58,8 @@ Route::get('/b/create', function () {
 
 //show all budget
 Route::get('/b', [BudgetController::class, 'index'])->name('budgets.index');
+// show single transaction
+Route::get('/b/{budgets}', [BudgetController::class, 'show'])->name('budgets.show');
 //store budget
 Route::post('/b', 'App\Http\Controllers\BudgetController@store');
 //destory budget
