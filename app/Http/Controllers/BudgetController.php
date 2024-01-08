@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Budget;
 use App\Models\User;
@@ -14,6 +15,13 @@ class BudgetController extends Controller
     public function __construct()
     {
         $this->middleware("auth");
+    }
+
+    public function index()
+    {
+        $user = Auth::user(); // logged in user
+        $budgets = $user ? $user->budgets()->get() : [];
+        return view("budgets.show", compact("budgets"));
     }
 
 
@@ -41,8 +49,11 @@ class BudgetController extends Controller
     public function show(Budget $budget)
     {
         //dd($budget);
-        $budgets = Budget::orderBy('date', 'desc')->get();
-        return view('budgets.show', compact('budgets'));
+
+        /* $budgets = Budget::orderBy('date', 'desc')->get();
+        return view('budgets.show', compact('budgets')); */
+
+        return view('budgets.show', compact('budget'));
     }
 
     //todo: delete budget from db

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,6 +13,13 @@ class TransactionController extends Controller
     public function __construct()
     {
         $this->middleware("auth");
+    }
+
+    public function index()
+    {
+        $user = Auth::user(); // logged in user
+        $transactions = $user ? $user->transactions()->get() : [];
+        return view("transactions.show", compact("transactions"));
     }
 
     public function store()
@@ -43,15 +51,10 @@ class TransactionController extends Controller
     {
 
         // dd($budget);
-        $transactions = Transaction::orderBy('date', 'desc')->get();
-        return view('transactions.show', compact('transactions'));
+        /* $transactions = Transaction::orderBy('date', 'desc')->get();
+        return view('transactions.show', compact('transactions')); */
     }
 
-    public function index(User $user)
-    {
-        $user = User::withCount('transactions')->find($user);
-        $count = $user->transactions_count;
-        return view('home', compact('count'));
-    }
+
 
 }

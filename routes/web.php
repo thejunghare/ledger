@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProfileController;
 
 
@@ -56,7 +57,8 @@ Route::get('/b/create', function () {
 });
 
 //show budget
-Route::get('/b', 'App\Http\Controllers\BudgetController@show');
+Route::get('/b', [BudgetController::class, 'index'])->name('budgets.index');
+// Route::get('/b', 'App\Http\Controllers\BudgetController@show');
 //store budget
 Route::post('/b', 'App\Http\Controllers\BudgetController@store');
 //destory budget
@@ -69,7 +71,8 @@ Route::get('/t/create', function () {
 });
 
 //show tansaction
-Route::get('/t', 'App\Http\Controllers\TransactionController@show');
+Route::get('/t', [TransactionController::class, 'index'])->name('transaction.index');
+// Route::get('/t', 'App\Http\Controllers\TransactionController@show');
 //store tansaction
 Route::post('/t', 'App\Http\Controllers\TransactionController@store');
 
