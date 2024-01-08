@@ -76,10 +76,15 @@ Route::get('/t/create', function () {
 
 //show all tansaction
 Route::get('/t', [TransactionController::class, 'index'])->name('transaction.index');
+
 // show single transaction
 Route::get('/t/{transactions}', [TransactionController::class, 'show'])->name('transactions.show');
+
 //store tansaction
 Route::post('/t', 'App\Http\Controllers\TransactionController@store');
+
+//destory budget
+Route::delete('/t/{transactions}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
 
 //about page
 Route::get('/a', function () {

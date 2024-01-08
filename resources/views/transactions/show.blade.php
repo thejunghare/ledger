@@ -34,9 +34,19 @@
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-decoration-none " href="/t/{{ $transaction->id }}">Details</a>
-                                    <div class="small">
-                                        <i class="fas fa-pencil text-success me-3"></i>
-                                        <i class="fas fa-trash text-danger"></i>
+                                    <div class="small d-flex align-items-center">
+                                        <form action="/t/{{ $transaction->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn"><i
+                                                    class="fas fa-pencil text-success"></i></button>
+                                        </form>
+                                        <form action="/t/{{ $transaction->id }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn"><i
+                                                    class="fas fa-trash text-danger"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
