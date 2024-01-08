@@ -34,9 +34,8 @@
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-decoration-none " href="/b/{{ $budget->id }}">Details</a>
                                     <div class="small d-flex align-items-center">
-                                        <form action="/b/{{ $budget->id }}" method="post">
+                                        <form action="/b/{{ $budget->id }}/edit" method="get">
                                             @csrf
-                                            @method('DELETE')
                                             <button type="submit" class="btn"><i
                                                     class="fas fa-pencil text-success"></i></button>
                                         </form>

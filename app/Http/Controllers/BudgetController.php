@@ -46,6 +46,36 @@ class BudgetController extends Controller
 
     }
 
+    // todo: edit single transaction
+    public function edit($budget)
+    {
+        $getBudget = Budget::query()
+            ->where('id', $budget)
+            ->where('user_id', Auth::Id())
+            ->first();
+
+         //dd($getBudget, Auth::user());
+
+
+        if (!$getBudget) {
+            return response()->json(['ID not found'], 404);
+        }
+
+        //  return response()->json($getTransaction);
+        return view('budgets.edit', compact('getBudget'));
+    }
+
+    // todo: update single tarnasction
+    public function update(Request $request, $id)
+    {
+        $item = Budget::find($id);
+        $item->date = $request->input('date');
+        $item->amount = $request->input('amount');
+
+        $item->save();
+        return redirect('/b')->with('success', 'Item updated successfully');
+    }
+
     //todo: get single budget
     public function show($budget)
     {

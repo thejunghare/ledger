@@ -65,6 +65,12 @@ Route::get('/b/{budgets}', [BudgetController::class, 'show'])->name('budgets.sho
 //store budget
 Route::post('/b', 'App\Http\Controllers\BudgetController@store');
 
+// edit tansaction
+Route::get('/b/{budgets}/edit', [BudgetController::class, 'edit'])->name('budgets.edit');
+
+// update transaction
+Route::put('/b/{budgets}', [BudgetController::class, 'update'])->name('budgets.update');
+
 //destory budget
 Route::delete('/b/{budgets}', [BudgetController::class, 'destroy'])->name('budgets.destroy');
 
@@ -87,7 +93,7 @@ Route::post('/t', 'App\Http\Controllers\TransactionController@store');
 Route::get('/t/{transactions}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
 
 // update transaction
-Route::put('/t/{transactions}', [TransactionController::class ,'update'])->name('transactions.update');
+Route::put('/t/{transactions}', [TransactionController::class, 'update'])->name('transactions.update');
 
 //destory budget
 Route::delete('/t/{transactions}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
@@ -96,7 +102,7 @@ Route::delete('/t/{transactions}', [TransactionController::class, 'destroy'])->n
 Route::get('/a', function () {
     return view('/about/show');
 });
-    
+
 //payments page
 Route::get('/p', function () {
     return view('/payments/show');
