@@ -46,13 +46,13 @@ class BudgetController extends Controller
 
     }
 
-    //todo: get single budgets
+    //todo: get single budget
     public function show($budget)
     {
         $getBudget = Budget::query()
-                ->where('id', $budget)
-                ->where('user_id', Auth::Id())
-                ->first();
+            ->where('id', $budget)
+            ->where('user_id', Auth::Id())
+            ->first();
 
         // dd($getId, Auth::user());
 
@@ -68,12 +68,16 @@ class BudgetController extends Controller
     //todo: delete budget from db
     public function destroy($budget)
     {
-        $getId = Budget::find($budget);
+        $getBudget = Budget::query()
+            ->where('id', $budget)
+            ->where('user_id', Auth::Id())
+            ->first();
 
-        if (!$getId) {
+        if (!$getBudget) {
             return response()->json(['ID not found'], 404);
         }
 
-        $budget->delete();
+        $getBudget->delete();
+        return redirect('/b');
     }
 }
