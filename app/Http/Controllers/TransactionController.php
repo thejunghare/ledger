@@ -49,14 +49,19 @@ class TransactionController extends Controller
 
     public function show($transactions)
     {
-        $getTransactionsId = Transaction::find($transactions);
+        $getTransaction = Transaction::query()
+            ->where('id', $transactions)
+            ->where('user_id', Auth::Id())
+            ->first();
 
-        if (!$getTransactionsId) {
+        // dd($getId, Auth::user());
+
+
+        if (!$getTransaction) {
             return response()->json(['ID not found'], 404);
         }
 
-        //return response()->json($getTransactionsId);
-
-        return view('transactions.see', compact('getTransactionsId'));
+        // return response()->json($getTransaction);
+        return view('transactions.see', compact('getTransaction'));
     }
 }

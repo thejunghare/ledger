@@ -16,10 +16,10 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-center">${{ $getId->amount }}</h5>
-                            <p class="text-center samll">{{ $getId->date }}</p>
+                            <h5 class="card-title text-center">₹{{ $getBudget->amount }}</h5>
+                            <p class="text-center samll">{{ $getBudget->date }}</p>
                             <ul class="list-group list-group-flush mb-3">
-                                <li  class="list-group-item">Type: {{ $getId->created_at }}</li>
+                                <li  class="list-group-item">Type: {{ $getBudget->created_at }}</li>
                             </ul>
                             <a href="#" class="btn btn-primary">Share</a>
                         </div>

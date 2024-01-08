@@ -49,20 +49,31 @@ class BudgetController extends Controller
     //todo: get single budgets
     public function show($budget)
     {
+        $getBudget = Budget::query()
+                ->where('id', $budget)
+                ->where('user_id', Auth::Id())
+                ->first();
+
+        // dd($getId, Auth::user());
+
+
+        if (!$getBudget) {
+            return response()->json(['ID not found'], 404);
+        }
+
+        // return response()->json($getId);
+        return view('budgets.see', compact('getBudget'));
+    }
+
+    //todo: delete budget from db
+    public function destroy($budget)
+    {
         $getId = Budget::find($budget);
 
         if (!$getId) {
             return response()->json(['ID not found'], 404);
         }
 
-        // return response()->json($getId);
-        return view('budgets.see', compact('getId'));
-    }
-
-    //todo: delete budget from db
-    public function destroy($id)
-    {
-        $budget = Budget::find($id);
-        //$budget->delete();
+        $budget->delete();
     }
 }

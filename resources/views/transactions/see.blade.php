@@ -16,12 +16,12 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-center">${{ $getTransactionsId->amount }}</h5>
-                            <p class="text-center samll">{{ $getTransactionsId->date }}</p>
+                            <h5 class="card-title text-center">₹{{ $getTransaction->amount }}</h5>
+                            <p class="text-center samll">{{ $getTransaction->date }}</p>
                             <ul class="list-group list-group-flush mb-3">
-                                <li  class="list-group-item">Type: {{ $getTransactionsId->type }}</li>
-                                <li  class="list-group-item">Category: {{ $getTransactionsId->category }}</li>
-                                <li  class="list-group-item">Payment mode: {{ $getTransactionsId->paymode }}</li>
+                                <li  class="list-group-item">Type: {{ $getTransaction->type }}</li>
+                                <li  class="list-group-item">Category: {{ $getTransaction->category }}</li>
+                                <li  class="list-group-item">Payment mode: {{ $getTransaction->paymode }}</li>
                             </ul>
                             <a href="#" class="btn btn-primary">Share</a>
                         </div>

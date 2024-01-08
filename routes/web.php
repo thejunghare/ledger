@@ -58,12 +58,15 @@ Route::get('/b/create', function () {
 
 //show all budget
 Route::get('/b', [BudgetController::class, 'index'])->name('budgets.index');
+
 // show single transaction
 Route::get('/b/{budgets}', [BudgetController::class, 'show'])->name('budgets.show');
+
 //store budget
 Route::post('/b', 'App\Http\Controllers\BudgetController@store');
+
 //destory budget
-Route::delete('/b/{budget}', BudgetController::class . '@destroy')->name('budget.destroy');
+Route::delete('/b/{budgets}', [BudgetController::class, 'destroy'])->name('budgets.destroy');
 
 
 // add tansaction
