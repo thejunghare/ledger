@@ -66,6 +66,39 @@ class TransactionController extends Controller
         return view('transactions.see', compact('getTransaction'));
     }
 
+    // todo: edit single transaction
+    public function edit($transaction)
+    {
+        $getTransaction = Transaction::query()
+            ->where('id', $transaction)
+            ->where('user_id', Auth::Id())
+            ->first();
+
+        // dd($getId, Auth::user());
+
+
+        if (!$getTransaction) {
+            return response()->json(['ID not found'], 404);
+        }
+
+        //  return response()->json($getTransaction);
+        return view('transactions.edit', compact('getTransaction'));
+    }
+
+    // todo: update single tarnasction
+    public function update(Request $request, $id)
+    {
+        $item = Transaction::find($id);
+        $item->type = $request->input('type');
+        $item->date = $request->input('date');
+        $item->amount = $request->input('amount');
+        $item->category = $request->input('category');
+        $item->paymode = $request->input('paymode');
+
+        $item->save();
+        return redirect('/t')->with('success', 'Item updated successfully');
+    }
+
     //todo: delete budget from db
     public function destroy($transactions)
     {
