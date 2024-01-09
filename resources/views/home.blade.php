@@ -12,10 +12,10 @@
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div class="">
-                                Transactions:
+                                Balance:
                             </div>
                             <div class="">
-                                {{ $transactioncount ?? 'N/A' }}
+                                ₹ {{ $formattedBalance ?? 'N/A' }}
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">

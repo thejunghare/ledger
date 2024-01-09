@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Budget;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Http\Request;
 
@@ -27,37 +29,67 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // get the logged in user
+        //todo: get the logged in user
         $user = auth()->user();
 
-        // get the transaction count
+        //todo: get the transaction count
         $transactioncount = $user->transactions->count();
         $transactions = $user->transactions;
 
-        // get total
+        //todo: get total
         $userId = Auth::id();
+        $currentdate = now()->toDateString();
 
         $totalIncomeAmount = Transaction::where('user_id', $userId)
             ->where('type', 'income')
+            ->whereDate('date', $currentdate)
             ->sum('amount');
 
         $totalExpenseAmount = Transaction::where('user_id', $userId)
             ->where('type', 'Expense')
+            ->whereDate('date', $currentdate)
             ->sum('amount');
 
 
-        // format amount in thousands and hundred
+        //todo: get budget amount based on date & find balance
+
+        $budget = $user->budgets()
+            ->whereDate('date', $currentdate)
+            ->first();
+
+        $getTransactionAmountBasedOnDate = $user->transactions()
+            ->where('type', 'Expense')
+            ->whereDate('date', $currentdate)
+            ->sum('amount');
+
+
+
+        $balance = 0;
+        $formattedBalance = 0;
+
+        if ($budget) {
+            $amountBasedOnCurrentDate = $budget->amount;
+            $balance = $amountBasedOnCurrentDate - $getTransactionAmountBasedOnDate;
+
+            $formattedBalance = number_format($balance);
+        }
+
+
+
+
+        //todo: format amount in thousands and hundred
         $amount = $totalExpenseAmount;
         $formattedExpenseAmount = number_format($amount);
 
-        // format amount in thousands and hundred
+        //todo: format amount in thousands and hundred
         $amount = $totalIncomeAmount;
         $formattedIncomeAmount = number_format($amount);
 
 
-        // get the budget count
+        //todo: get the budget count
         $budgetcount = $user->budgets->count();
-        return view('home', compact('transactioncount', 'budgetcount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount'));
+
+        return view('home', compact('transactioncount', 'budgetcount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount', 'formattedBalance'));
     }
 }
 
