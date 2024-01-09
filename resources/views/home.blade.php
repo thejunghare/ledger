@@ -120,7 +120,12 @@
                                             @endif
                                         </td>
                                         <td>{{ $transaction->date }}</td>
-                                        <td>{{ $transaction->amount }}</td>
+                                        <td>
+                                            @php
+                                                $formattedAmount = number_format($transaction->amount);
+                                            @endphp
+                                            ₹ {{ $formattedAmount }}
+                                        </td>
                                         <td>{{ $transaction->category }}</td>
                                         <td>{{ $transaction->paymode }}</td>
                                     </tr>

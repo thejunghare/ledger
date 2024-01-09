@@ -31,7 +31,7 @@
                                         <span
                                             class="{{ $transaction->type === 'Expense' ? 'text-danger' : 'text-success' }}">
                                             @php
-                                                $formattedAmount = number_format($transaction->amount, 2);
+                                                $formattedAmount = number_format($transaction->amount);
                                             @endphp
                                             ₹ {{ $formattedAmount }}
                                         </span>

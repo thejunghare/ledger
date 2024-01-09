@@ -48,11 +48,11 @@ class HomeController extends Controller
 
         // format amount in thousands and hundred
         $amount = $totalExpenseAmount;
-        $formattedExpenseAmount = number_format($amount, 2);
+        $formattedExpenseAmount = number_format($amount);
 
         // format amount in thousands and hundred
         $amount = $totalIncomeAmount;
-        $formattedIncomeAmount = number_format($amount, 2);
+        $formattedIncomeAmount = number_format($amount);
 
 
         // get the budget count

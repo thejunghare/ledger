@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-center">
                                 @php
-                                    $formattedAmount = number_format($getTransaction->amount, 2);
+                                    $formattedAmount = number_format($getTransaction->amount);
                                 @endphp
                                 ₹ {{ $formattedAmount }}
                             </h5>
