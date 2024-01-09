@@ -45,9 +45,19 @@ class HomeController extends Controller
             ->where('type', 'Expense')
             ->sum('amount');
 
+
+        // format amount in thousands and hundred
+        $amount = $totalExpenseAmount;
+        $formattedExpenseAmount = number_format($amount, 2);
+
+        // format amount in thousands and hundred
+        $amount = $totalIncomeAmount;
+        $formattedIncomeAmount = number_format($amount, 2);
+
+
         // get the budget count
         $budgetcount = $user->budgets->count();
-        return view('home', compact('transactioncount', 'budgetcount', 'transactions', 'totalIncomeAmount', 'totalExpenseAmount'));
+        return view('home', compact('transactioncount', 'budgetcount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount'));
     }
 }
 

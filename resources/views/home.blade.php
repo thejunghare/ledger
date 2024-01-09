@@ -10,41 +10,65 @@
             <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Transactions :
-                            {{ $transactioncount ?? 'N/A' }}
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="">
+                                Transactions:
+                            </div>
+                            <div class="">
+                                {{ $transactioncount ?? 'N/A' }}
+                            </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/t">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            <a class="small text-white text-decoration-none" href="/t">View Details</a>
+                            <div class="small text-white "><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-warning text-white mb-4">
-
-                        <div class="card-body">Budgets:
-                            {{ $budgetcount ?? 'N/A' }}
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="">
+                                Budgets:
+                            </div>
+                            <div class="">
+                                {{ $budgetcount ?? 'N/A' }}
+                            </div>
                         </div>
+
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/b">View Details</a>
+                            <a class="small text-white text-decoration-none" href="/b">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Income ₹{{$totalIncomeAmount}}</div>
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="">
+                                Income:
+                            </div>
+                            <div class="">
+                                ₹{{ $formattedIncomeAmount }}
+                            </div>
+                        </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
+                            <a class="small text-white text-decoration-none" href="#">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Spending ₹{{$totalExpenseAmount}}</div>
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div class="">
+                                Spending:
+                            </div>
+                            <div class="">
+                                ₹ {{ $formattedExpenseAmount }}
+                            </div>
+                        </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
+                            <a class="small text-white text-decoration-none" href="#">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
