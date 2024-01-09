@@ -16,12 +16,17 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-center">₹{{ $getTransaction->amount }}</h5>
+                            <h5 class="card-title text-center">
+                                @php
+                                    $formattedAmount = number_format($getTransaction->amount, 2);
+                                @endphp
+                                ₹ {{ $formattedAmount }}
+                            </h5>
                             <p class="text-center samll">{{ $getTransaction->date }}</p>
                             <ul class="list-group list-group-flush mb-3">
-                                <li  class="list-group-item">Type: {{ $getTransaction->type }}</li>
-                                <li  class="list-group-item">Category: {{ $getTransaction->category }}</li>
-                                <li  class="list-group-item">Payment mode: {{ $getTransaction->paymode }}</li>
+                                <li class="list-group-item">Type: {{ $getTransaction->type }}</li>
+                                <li class="list-group-item">Category: {{ $getTransaction->category }}</li>
+                                <li class="list-group-item">Payment mode: {{ $getTransaction->paymode }}</li>
                             </ul>
                             <a href="#" class="btn btn-primary">Share</a>
                         </div>

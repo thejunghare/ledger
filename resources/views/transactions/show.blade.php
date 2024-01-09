@@ -29,7 +29,12 @@
                                     <div>{{ $transaction->date }}</div>
                                     <div>
                                         <span
-                                            class="{{ $transaction->type === 'Expense' ? 'text-danger' : 'text-success' }}">₹{{ $transaction->amount }}</span>
+                                            class="{{ $transaction->type === 'Expense' ? 'text-danger' : 'text-success' }}">
+                                            @php
+                                                $formattedAmount = number_format($transaction->amount, 2);
+                                            @endphp
+                                            ₹ {{ $formattedAmount }}
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">

@@ -19,6 +19,7 @@ class TransactionController extends Controller
     {
         $user = Auth::user(); // logged in user
         $transactions = $user ? $user->transactions()->get() : [];
+
         return view("transactions.show", compact("transactions"));
     }
 
