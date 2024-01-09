@@ -44,7 +44,9 @@ class TransactionController extends Controller
         ]);
 
 
-        return redirect('/t');
+        return redirect('/t')->with([
+            'success' => 'Transaction added successfully!'
+        ]);
 
     }
 
@@ -97,7 +99,9 @@ class TransactionController extends Controller
         $item->paymode = $request->input('paymode');
 
         $item->save();
-        return redirect('/t')->with('success', 'Item updated successfully');
+        return redirect('/t')->with([
+            'success' => 'Transaction updated successfully!'
+        ]);
     }
 
     //todo: delete budget from db
@@ -113,6 +117,9 @@ class TransactionController extends Controller
         }
 
         $getTransaction->delete();
-        return redirect('/t');
+
+        return redirect('/t')->with([
+            'success' => 'Transaction deleted successfully!'
+        ]);
     }
 }
