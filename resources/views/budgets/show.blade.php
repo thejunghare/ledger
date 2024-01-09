@@ -28,7 +28,12 @@
                                 <div class="card-body d-flex justify-content-between">
                                     <div>{{ $budget->date }}</div>
                                     <div>
-                                        <span> ₹{{ $budget->amount }}</span>
+                                        <span>
+                                            @php
+                                                $formattedAmount = number_format($budget->amount);
+                                            @endphp
+                                            ₹ {{ $formattedAmount }}
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
