@@ -4,10 +4,10 @@
     <main class="">
         @if (session('success'))
             <div class="position-relative mt-2">
-                <div class="z-3 position-absolute top-0 start-50 translate-middle-x">
-                    <div class="alert alert-success alert-dismissible fade show " role="alert" aria-live="polite">
-                        <i class="fas fa-check-circle me-2"></i>
-                        {{ session('success') }}
+                <div class="z-3 position-absolute top-0 start-50 translate-middle-x" id="alertsuccess">
+                    <div class="alert alert-success fade show" role="alert" aria-live="polite">
+                        <small> <i class="fas fa-check-circle me-2"></i>
+                            {{ session('success') }}</small>
                     </div>
                 </div>
             </div>
@@ -15,10 +15,10 @@
 
         @if (session('error'))
             <div class=" position-relative mt-2">
-                <div class="z-3 position-absolute top-0 start-50 translate-middle-x">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <i class="fa-solid fa-circle-exclamation me-2"></i>
-                        {{ session('error') }}
+                <div class="z-3 position-absolute top-0 start-50 translate-middle-x" id="alerterror">
+                    <div class="alert alert-danger fade show" role="alert">
+                        <small> <i class="fa-solid fa-circle-exclamation me-2"></i>
+                            {{ session('error') }} </small>
                     </div>
                 </div>
             </div>

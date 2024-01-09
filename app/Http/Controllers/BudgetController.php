@@ -42,7 +42,7 @@ class BudgetController extends Controller
 
         if ($existingEntry) {
             return redirect('/b')->with([
-                'error' => 'Budget already exists for this date.'
+                'error' => 'Budget exists for this date!'
             ]);
         }
 
@@ -52,7 +52,7 @@ class BudgetController extends Controller
         ]);
 
         return redirect('/b')->with([
-            'success' => 'Budget created successfully.',
+            'success' => 'Budget created successfully!',
             'budget' => $newBudget,
         ]);
     }

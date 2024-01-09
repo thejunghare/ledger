@@ -91,6 +91,15 @@
     }
 }
 
+@media only screen and (max-width: 600px) {
+   #alertsuccess,#alerterror {
+        right: -20%;
+        left: 25%;
+    }
+
+}
+
+
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);
@@ -7908,6 +7917,8 @@ textarea.form-control-lg {
 .start-100 {
     left: 100% !important;
 }
+
+
 
 .end-0 {
     right: 0 !important;
