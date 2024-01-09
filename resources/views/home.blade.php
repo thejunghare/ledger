@@ -48,7 +48,7 @@
                                 Income:
                             </div>
                             <div class="">
-                                ₹{{ $formattedIncomeAmount }}
+                                ₹ {{ $formattedIncomeAmount }}
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">

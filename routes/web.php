@@ -71,7 +71,7 @@ Route::get('/b/{budgets}/edit', [BudgetController::class, 'edit'])->name('budget
 // update transaction
 Route::put('/b/{budgets}', [BudgetController::class, 'update'])->name('budgets.update');
 
-//destory budget
+//destory budget    
 Route::delete('/b/{budgets}', [BudgetController::class, 'destroy'])->name('budgets.destroy');
 
 

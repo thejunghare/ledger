@@ -34,17 +34,30 @@ class BudgetController extends Controller
             'amount' => 'required|numeric|min:1'
         ]);
 
-        //dd(request()->all());
+        $userId = $request->user()->id;
 
-        auth()->user()->budgets()->create([
+        $existingEntry = Budget::where('user_id', $userId)
+            ->where('date', $data['date'])
+            ->exists();
+
+        if ($existingEntry) {
+            return redirect('/b')->with([
+                'error' => 'Budget already exists for this date.'
+            ]);
+        }
+
+        $newBudget = $request->user()->budgets()->create([
             'date' => $data['date'],
             'amount' => $data['amount'],
         ]);
 
-
-        return redirect('/b');
-
+        return redirect('/b')->with([
+            'success' => 'Budget created successfully.',
+            'budget' => $newBudget,
+        ]);
     }
+
+
 
     // todo: edit single transaction
     public function edit($budget)
@@ -54,7 +67,7 @@ class BudgetController extends Controller
             ->where('user_id', Auth::Id())
             ->first();
 
-         //dd($getBudget, Auth::user());
+        //dd($getBudget, Auth::user());
 
 
         if (!$getBudget) {

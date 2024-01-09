@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const showwarning = document.querySelector("#showerror");
     const displayerror = document.querySelector("#displayerror");
 
-     getamount.oninput = function () {
+    getamount.oninput = function () {
         console.log(getamount.value);
         amount = getamount.value;
         if (amount <= 0) {
@@ -41,7 +41,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
     };
 
-     document
+    document
         .querySelector("#addbudgetform")
         .addEventListener("submit", function (event) {
             let amount = getamount.value;
@@ -52,7 +52,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
                 displayerror.innerHTML = `Amount should be greater than '₹.0'`;
             }
-        }); 
+        });
 
     /*todo: fill the date with current date at client side*/
     let today = new Date();
@@ -63,4 +63,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     console.log(today);
     const setdate = document.querySelector("#date");
     setdate.value = today;
+
+
 });
