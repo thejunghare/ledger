@@ -86,7 +86,9 @@ class BudgetController extends Controller
         $item->amount = $request->input('amount');
 
         $item->save();
-        return redirect('/b')->with('success', 'Item updated successfully');
+        return redirect('/b')->with([
+            'success' => 'Budget updated successfully!'
+        ]);
     }
 
     //todo: get single budget
@@ -121,6 +123,8 @@ class BudgetController extends Controller
         }
 
         $getBudget->delete();
-        return redirect('/b');
+        return redirect('/b')->with([
+            'success' => 'Budget deleted successfully!'
+        ]);
     }
 }
