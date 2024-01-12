@@ -1,11 +1,10 @@
 {
-  "projectName": "php-free-laravel",
+  "projectName": "ledger",
   "meta": {
-    "starter": "php-free-laravel",
     "type": "backend"
   },
-  "hash": "c2a628aa",
   "backend": {
     "platform": "php-laravel"
-  }
+  },
+  "hash": "861f3c8c"
 }
