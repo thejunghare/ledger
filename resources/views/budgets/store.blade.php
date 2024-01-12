@@ -6,9 +6,8 @@
             <h1 class="mt-4">Add Budget <i class="bi bi-0-circle"></i></h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Features</li>
-
-
             </ol>
+
             <!-- form -->
             <form class="py-4 " method="post" action="/b" id="addbudgetform">
                 @csrf
@@ -37,6 +36,8 @@
                         @enderror
                     </div>
                 </div>
+
+                <example-component></example-component>
 
                 <button type="submit" class="btn btn-primary" id="addbudget">Add budget</button>
             </form>
