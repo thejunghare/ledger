@@ -50,17 +50,8 @@
                 <div class="row g-3 mb-3">
                     {{-- category --}}
                     <div class="col">
-                        <select class="form-select" aria-label="Default select example" name="category">
-                            <option selected>Category</option>
-                            <option value="other">Other</option>
-                            <option value="food/drinks">Food/Drinks</option>
-                            <option value="shopping">Shopping</option>
-                            <option value="travelling">Travelling</option>
-                            <option value="enterainment">Enterainment</option>
-                            <option value="medical">Medical</option>
-                            <option value="salary">Salary</option>
-                            <option value="rent">Rent</option>
-                            <option value="sold_items">Sold Items</option>
+                        <select class="form-select" aria-label="Default select example" name="category" id="categoryOptions">
+                            <option selected>Choose Category</option>
                         </select>
                     </div>
                     {{-- paymode --}}
@@ -75,6 +66,23 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Save</button>
+
+                <script>
+                    $(document).ready(function () {
+                        // Fetch options using AJAX
+                        $.ajax({
+                            url: '/get-options',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (data) {
+                                // Populate the select element with options
+                                $.each(data, function (key, value) {
+                                    $('#categoryOptions').append('<option value="' + value.id + '">' + value.category_name + '</option>');
+                                });
+                            }
+                        });
+                    });
+                </script>
             </form>
         </div>
     </main>

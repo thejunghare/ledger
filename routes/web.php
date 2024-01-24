@@ -92,6 +92,9 @@ Route::get('/t', [TransactionController::class, 'index'])->name('transaction.ind
 // show single transaction
 Route::get('/t/{transactions}', [TransactionController::class, 'show'])->name('transactions.show');
 
+// route for getting the categories dynamically
+Route::get('/get-options', [DefaultCategoriesController::class, 'getCategoryOptions']);
+
 //store tansaction
 Route::post('/t', 'App\Http\Controllers\TransactionController@store');
 

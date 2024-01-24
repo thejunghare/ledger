@@ -39,7 +39,17 @@ class DefaultCategoriesController extends Controller
 
         // dd($incomeCategories);
         return response()->json([
-            'html'=> $html
+            'html' => $html
         ]);
+    }
+
+    //
+    public function getCategoryOptions()
+    {
+        $options = DefaultCategories::whereHas('defaultCategoryType', function ($query) {
+            $query->where('category_type_id', 2);
+        })->get();
+        
+        return response()->json($options);
     }
 }
