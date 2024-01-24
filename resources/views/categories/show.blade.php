@@ -30,7 +30,7 @@
                     <h1 class="mt-4">My Categories
                 </div>
                 <div>
-                    <a href="/b/create" class="fs-2">
+                    <a href="/c/create" class="fs-2">
                         <i class="fas fa-plus text-primary"></i>
                     </a>
                 </div>
@@ -41,12 +41,12 @@
             </ol>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="filter" id="inlineRadio1" value="2" checked />
-                <label class="form-check-label" for="inlineRadio1">Expense</label>
+                <input class="form-check-input" type="radio" name="filter" id="expense-radio" value="2" checked />
+                <label class="form-check-label" for="expense-radio">Expense</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="filter" id="inlineRadio2" value="1" />
-                <label class="form-check-label" for="inlineRadio2">Income</label>
+                <input class="form-check-input" type="radio" name="filter" id="income-radio" value="1" />
+                <label class="form-check-label" for="income-radio">Income</label>
             </div>
 
             <div id="recordsContainer" class="row py-4">
@@ -55,25 +55,7 @@
         </div>
 
         <script>
-            /* const successAlert = document.querySelector('.alert-success');
-                                                                                                                                                            if (successAlert) {
-                                                                                                                                                                setTimeout(() => {
-                                                                                                                                                                    successAlert.classList.remove('show');
-                                                                                                                                                                }, 3000);
-                                                                                                                                                            }
-
-                                                                                                                                                            const errorAlert = document.querySelector('.alert-danger');
-                                                                                                                                                            if (errorAlert) {
-                                                                                                                                                                setTimeout(() => {
-                                                                                                                                                                    errorAlert.classList.remove('show');
-                                                                                                                                                                }, 3000);
-                                                                                                                                                            } */
-
-
-
             $(document).ready(function() {
-
-                // Define the handleRadioChange function
                 function handleRadioChange(filterValue) {
                     $.ajax({
                         url: '{{ route('DefaultCategories.index') }}',
@@ -95,13 +77,12 @@
                     });
                 }
 
-                // Trigger initial AJAX request
-                handleRadioChange(2); // Call with default filter value
+                handleRadioChange(2);
 
-                // Set default checked radio button
+
                 $('input[name=filter][value=2]').prop('checked', true);
 
-                // Handle radio button changes
+
                 $('input[name=filter]').change(function() {
                     const filterValue = $(this).val();
                     handleRadioChange(filterValue);

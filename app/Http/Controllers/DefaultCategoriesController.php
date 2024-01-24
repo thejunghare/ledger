@@ -26,6 +26,7 @@ class DefaultCategoriesController extends Controller
         return view("categories.show", compact('categories'));
     }
 
+    // fetching categories using ajax
     public function showRecords(Request $request)
     {
         $filter = $request->input('filter', 2);
