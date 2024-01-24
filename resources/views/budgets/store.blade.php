@@ -37,9 +37,27 @@
                     </div>
                 </div>
 
-                <example-component></example-component>
+                {{-- <example-component></example-component> --}}
+                <div class="form-check form-switch  mb-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switch" />
+                    <label class="form-check-label" for="switch">Set category wise budget</label>
+                </div>
 
-                <button type="submit" class="btn btn-primary" id="addbudget">Add budget</button>
+                <div id="ischecked" class="d-none row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="inputState" class="form-label">Select category</label>
+                        <select id="inputState" class="form-select">
+                            <option selected>Choose...</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Amount</label>
+                        <input type="password" class="form-control" id="inputPassword4">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary rounded-2" id="addbudget">Add budget</button>
             </form>
         </div>
     </main>

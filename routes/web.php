@@ -5,6 +5,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\DefaultCategoriesController;
 use App\Http\Controllers\ProfileController;
 
 
@@ -45,6 +46,9 @@ Auth::routes();
 
 // Dashboard
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//show all category
+Route::get('/categories', [DefaultCategoriesController::class, 'index'])->name('DefaultCategories.index');
 
 // budget
 /* Route::get('/b', function () {

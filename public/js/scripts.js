@@ -18,6 +18,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         //     document.body.classList.toggle('sb-sidenav-toggled');
         // }
         sidebarToggle.addEventListener("click", (event) => {
+            // console.log('I was clicked');
             event.preventDefault();
             document.body.classList.toggle("sb-sidenav-toggled");
             localStorage.setItem(
@@ -65,4 +66,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
     setdate.value = today;
 
 
+
+    // show category
+    const getchekbox =  document.querySelector('#switch')
+    const ischecked = document.querySelector('#ischecked')
+
+    getchekbox.addEventListener('click', function(){
+        ischecked.classList.toggle('d-none');
+    })
 });

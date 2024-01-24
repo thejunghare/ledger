@@ -32,6 +32,15 @@ class HomeController extends Controller
         //todo: get the logged in user
         $user = auth()->user();
 
+        $username = $user->name;
+        $words = explode(' ', $username);
+
+
+        $firstLetters = '';
+        foreach ($words as $word) {
+            $firstLetters .= strtoupper($word[0]); // Convert to uppercase if needed
+        }
+
         //todo: get the transaction count
         $transactioncount = $user->transactions->count();
         $transactions = $user->transactions;
@@ -89,7 +98,7 @@ class HomeController extends Controller
         //todo: get the budget count
         $budgetcount = $user->budgets->count();
 
-        return view('home', compact('transactioncount', 'budgetcount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount', 'formattedBalance'));
+        return view('home', compact('firstLetters', 'transactioncount', 'budgetcount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount', 'formattedBalance'));
     }
 }
 

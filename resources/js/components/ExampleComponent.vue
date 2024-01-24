@@ -1,18 +1,18 @@
 <template>
     <div>
         <!-- check button -->
-        <div class="form-check mb-2">
+        <div class="form-check form-switch mb-2">
             <input
                 class="form-check-input"
                 type="checkbox"
-                value=""
+                role="switch"
                 id="flexCheckDefault"
                 v-model="isChecked"
             />
-            <label class="form-check-label" for="flexCheckDefault">
-                Set category wise budget [Check if want set category to your
-                budgets]
-            </label>
+            <label class="form-check-label" for="switchCheckDefault"
+                >Set category wise budget [Check if want set category to your
+                budgets]</label
+            >
         </div>
 
         <!-- elements -->
