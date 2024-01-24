@@ -40,37 +40,73 @@
                 <li class="breadcrumb-item active">Features</li>
             </ol>
 
-            <div class="row py-4">
-                @if ($categories->isEmpty())
-                    <p>No Categories available.</p>
-                @else
-                    @foreach ($incomeCategories as $categories)
-                        <div class="col-xl-3 col-md-6 ">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    {{ $categories->category_name }}
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="filter" id="inlineRadio1" value="2" checked />
+                <label class="form-check-label" for="inlineRadio1">Expense</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="filter" id="inlineRadio2" value="1" />
+                <label class="form-check-label" for="inlineRadio2">Income</label>
+            </div>
+
+            <div id="recordsContainer" class="row py-4">
+
             </div>
         </div>
 
-        {{-- <script>
-            const successAlert = document.querySelector('.alert-success');
-            if (successAlert) {
-                setTimeout(() => {
-                    successAlert.classList.remove('show');
-                }, 3000);
-            }
+        <script>
+            /* const successAlert = document.querySelector('.alert-success');
+                                                                                                                                                            if (successAlert) {
+                                                                                                                                                                setTimeout(() => {
+                                                                                                                                                                    successAlert.classList.remove('show');
+                                                                                                                                                                }, 3000);
+                                                                                                                                                            }
 
-            const errorAlert = document.querySelector('.alert-danger');
-            if (errorAlert) {
-                setTimeout(() => {
-                    errorAlert.classList.remove('show');
-                }, 3000);
-            }
-        </script> --}}
+                                                                                                                                                            const errorAlert = document.querySelector('.alert-danger');
+                                                                                                                                                            if (errorAlert) {
+                                                                                                                                                                setTimeout(() => {
+                                                                                                                                                                    errorAlert.classList.remove('show');
+                                                                                                                                                                }, 3000);
+                                                                                                                                                            } */
+
+
+
+            $(document).ready(function() {
+
+                // Define the handleRadioChange function
+                function handleRadioChange(filterValue) {
+                    $.ajax({
+                        url: '{{ route('DefaultCategories.index') }}',
+                        type: 'GET',
+                        data: {
+                            filter: filterValue
+                        },
+                        success: function(response) {
+                            if (response) {
+                                $('#recordsContainer').html(response.html);
+                            } else {
+                                $('#recordsContainer').html('<p>No data available.</p>');
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            $("#recordsContainer").html("An error occurred. Please try again later.");
+                            console.error("AJAX error:", errorThrown);
+                        }
+                    });
+                }
+
+                // Trigger initial AJAX request
+                handleRadioChange(2); // Call with default filter value
+
+                // Set default checked radio button
+                $('input[name=filter][value=2]').prop('checked', true);
+
+                // Handle radio button changes
+                $('input[name=filter]').change(function() {
+                    const filterValue = $(this).val();
+                    handleRadioChange(filterValue);
+                });
+            });
+        </script>
     </main>
 @endsection

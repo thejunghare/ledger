@@ -47,8 +47,10 @@ Auth::routes();
 // Dashboard
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//show all category
-Route::get('/categories', [DefaultCategoriesController::class, 'index'])->name('DefaultCategories.index');
+//show fetched categories
+Route::get('/categories', [DefaultCategoriesController::class, 'index'])->name('DefaultCategories.show');
+
+Route::get('/fetchcategories', [DefaultCategoriesController::class, 'showRecords'])->name('DefaultCategories.index');
 
 // budget
 /* Route::get('/b', function () {
