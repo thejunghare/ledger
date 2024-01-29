@@ -4,23 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('budget', function (Blueprint $table) {
+        Schema::create('group_budgets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->date('date');
-            $table->integer('amount')->unsigned();
+            $table->string('budget_name');
+            $table->integer('budget_amount')->unsigned();
             $table->timestamps();
 
-            $table->index('user_id');
-            $table->unique(['user_id', 'date']);
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unique(['user_id', 'budget_name']);
         });
-
     }
 
     /**
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::drop('budget');
+        Schema::dropIfExists('group_budgets');
     }
 };
