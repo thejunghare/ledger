@@ -36,9 +36,13 @@
                 </div>
             </div>
 
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Features</li>
-            </ol>
+             {{-- breadcrumb --}}
+             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Group budgets</li>
+                </ol>
+            </nav>
 
             <div class="row py-4">
                 @if ($budgets->isEmpty())
