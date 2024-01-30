@@ -30,7 +30,7 @@
                     <h1 class="mt-4">Group Budget
                 </div>
                 <div>
-                    <a href="/g/create" class="fs-2">
+                    <a href="/group/budget/create" class="fs-2">
                         <i class="fas fa-plus text-primary"></i>
                     </a>
                 </div>
@@ -51,18 +51,17 @@
                                     <div>{{ $budget->budget_name }}</div>
                                     <div>
                                         <span>
-                                           {{--  @php
-                                                $formattedAmount = number_format($budget->amount);
+                                            @php
+                                                $formattedBudgetAmount = number_format($budget->budget_amount, 2);
                                             @endphp
-                                            ₹ {{ $formattedAmount }} --}}
-                                            {{ $budget->budget_amount }}
+                                            ₹{{ $formattedBudgetAmount }}
                                         </span>
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-decoration-none " href="/group/budget  /{{ $budget->id }}">Details</a>
+                                    <a class="small text-decoration-none " href="/group/budget/{{ $budget->id }}">Details</a>
                                     <div class="small d-flex align-items-center">
-                                        <form action="/g/{{ $budget->id }}/edit" method="get">
+                                        <form action="/group/budget/{{ $budget->id }}/edit" method="get">
                                             @csrf
                                             <button type="submit" class="btn"><i
                                                     class="fas fa-pencil text-success"></i></button>

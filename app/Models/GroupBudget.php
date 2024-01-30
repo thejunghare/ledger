@@ -15,4 +15,9 @@ class GroupBudget extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function groupTransactions()
+    {
+        return $this->hasMany(GroupBudgetTransaction::class, 'for_budget_id');
+    }
 }

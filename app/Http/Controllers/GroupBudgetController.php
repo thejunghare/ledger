@@ -70,30 +70,69 @@ class GroupBudgetController extends Controller
 
     public function edit($id)
     {
-        $groupBudgetID = groupBudget::find($id);
-        return view('groupBudgets.edit', compact('groupBudgetID'));
+        // get the user ID
+        $userID = Auth::id();
+
+        // get the budget details
+        $budgetDetails = groupBudget::
+            where('id', $id)
+            ->where('user_id', $userID)
+            ->first();
+
+        // check for ID
+        if (!$budgetDetails) {
+            return response()->json(['ID not found'], 404);
+        }
+
+        return view('groupBudgets.edit', compact('budgetDetails'));
     }
 
     public function update(Request $request, $id)
     {
+        // get request details
+        $request->validate([
+            'budget_name' => 'required',
+            'budget_amount' => 'required|numeric|min:1'
+        ]);
+
+        //update the details
+        $updated = groupBudget::where('id', $id)->update($request->only(['budget_name', 'budget_amount']));
+
+        if ($updated) {
+            return redirect('group/budgets/')->with([
+                'success' => 'Budget was updated',
+            ]);
+        } else {
+            return redirect('group/budgets/')->with([
+                'error' => `Can't update budget, try again!`
+            ]);
+        }
     }
 
     public function destroy($id)
     {
         // get the id for budget
-        $groupBudgetID = groupBudget::find($id);
+        $groupBudget = groupBudget::find($id);
 
-        // delete the related transactions first
-        $relatedTransactions = GroupBudgetTransaction::where('for_budget_id', $id)->get();
-        foreach($relatedTransactions as $transaction){
-            $transaction->delete();
+        if (!$groupBudget){
+            return redirect('/group/budgets')->with([
+                'error' => 'Budget not found!'
+            ]);
         }
 
+        // delete the related transactions first
+       /*  $relatedTransactions = GroupBudgetTransaction::where('for_budget_id', $id)->get();
+        foreach ($relatedTransactions as $transaction) {
+            $transaction->delete();
+        } */
+
+        $groupBudget->groupTransactions()->delete();
+
         // delete the budget itself
-        $groupBudgetID::find($id)->delete();
+        $groupBudget->delete();
 
         // redirect on delete with flash message
-        return redirect ('/group/budgets')->with([
+        return redirect('/group/budgets')->with([
             'success' => 'Budget destroyed!'
         ]);
     }

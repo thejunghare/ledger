@@ -11,13 +11,13 @@ use App\Models\User;
 class BudgetController extends Controller
 {
 
-    //todo: make sure only auth user does budget stuff
+    // make sure only auth user does budget stuff
     public function __construct()
     {
         $this->middleware("auth");
     }
 
-    // todo: display budgets
+    // display budgets
     public function index()
     {
         $user = Auth::user(); // logged in user
@@ -26,7 +26,7 @@ class BudgetController extends Controller
     }
 
 
-    //todo: store budget in db
+    // store budget in db
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -59,7 +59,7 @@ class BudgetController extends Controller
 
 
 
-    // todo: edit single transaction
+    //  edit single transaction
     public function edit($budget)
     {
         $getBudget = Budget::query()
@@ -78,7 +78,7 @@ class BudgetController extends Controller
         return view('budgets.edit', compact('getBudget'));
     }
 
-    // todo: update single tarnasction
+    //  update single tarnasction
     public function update(Request $request, $id)
     {
         $item = Budget::find($id);
@@ -91,7 +91,7 @@ class BudgetController extends Controller
         ]);
     }
 
-    //todo: get single budget
+    // get single budget
     public function show($budget)
     {
         $getBudget = Budget::query()
@@ -110,7 +110,7 @@ class BudgetController extends Controller
         return view('budgets.see', compact('getBudget'));
     }
 
-    //todo: delete budget from db
+    // delete budget from db
     public function destroy($budget)
     {
         $getBudget = Budget::query()
