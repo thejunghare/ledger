@@ -3,11 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use App\Models\GroupBudgetTransaction;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -55,9 +56,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Budget::class);
     }
 
-    public function groupBudgets(){
+    public function groupBudgets()
+    {
         return $this->hasMany(GroupBudget::class);
     }
+
+    public function groupBudgetTransactions()
+    {
+        return $this->hasMany(GroupBudgetTransaction::class);
+    }
+
 
     public function transactions()
     {

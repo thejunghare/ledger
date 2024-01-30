@@ -15,17 +15,37 @@ class GroupBudgetSeeder extends Seeder
     {
 
         DB::table("group_budgets")->insert([
-            // user 1
+            //group budget for user 1
             [
                 'user_id' => 1,
-                'budget_name' => 'bugdet One',
+                'budget_name' => 'budget One',
                 'budget_amount' => 25000,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
-            // user 2
+             //group budget for user 1
+             [
+                'user_id' => 1,
+                'budget_name' => 'budget Two',
+                'budget_amount' => 25000,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            //group budget user 2
             [
                 'user_id' => 2,
-                'budget_name' => 'bugdet One',
+                'budget_name' => 'budget One',
                 'budget_amount' => 25000,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+             //group budget for user 1
+             [
+                'user_id' => 2,
+                'budget_name' => 'budget Two',
+                'budget_amount' => 25000,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }

@@ -6,8 +6,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GroupBudgetController;
+use App\Http\Controllers\GroupBudgetDashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\DefaultCategoriesController;
+use App\Http\Controllers\GroupTransactionsController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
@@ -129,6 +131,10 @@ Route::get('/d', [App\Http\Controllers\DetailsController::class, 'index']);
 /* group budgets */
 // index
 Route::get('/g', [GroupBudgetController::class, 'index'])->name('groupBudget.index');
+
+// Dashboard / see details of individual group budgets
+Route::get('/group/{grouptransaction}', [GroupBudgetDashboardController::class, 'show'])->name('GroupBudgetDashboardController.show');
+
 
 // creaet view
 Route::get('/g/create', [GroupBudgetController::class, 'create'])->name('groupBudget.create');

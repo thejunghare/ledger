@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //todo: get the logged in user
+        // get the logged in user
         $user = auth()->user();
 
         $username = $user->name;
@@ -41,33 +41,33 @@ class HomeController extends Controller
             $firstLetters .= strtoupper($word[0]); // Convert to uppercase if needed
         }
 
-        //todo: get the transaction count
+        // get the transaction count
         $transactioncount = $user->transactions->count();
         $transactions = $user->transactions;
 
-        //todo: get total
+        // get total
         $userId = Auth::id();
         $currentdate = now()->toDateString();
 
         $totalIncomeAmount = Transaction::where('user_id', $userId)
-            ->where('type', 'income')
+            ->where('transaction_type_id', 1)
             ->whereDate('date', $currentdate)
             ->sum('amount');
 
         $totalExpenseAmount = Transaction::where('user_id', $userId)
-            ->where('type', 'Expense')
+            ->where('transaction_type_id', 2)
             ->whereDate('date', $currentdate)
             ->sum('amount');
 
 
-        //todo: get budget amount based on date & find balance
+        // get budget amount based on date & find balance
 
         $budget = $user->budgets()
             ->whereDate('date', $currentdate)
             ->first();
 
         $getTransactionAmountBasedOnDate = $user->transactions()
-            ->where('type', 'Expense')
+            ->where('transaction_type_id', 2)
             ->whereDate('date', $currentdate)
             ->sum('amount');
 
@@ -84,18 +84,16 @@ class HomeController extends Controller
         }
 
 
-
-
-        //todo: format amount in thousands and hundred
+        // format amount in thousands and hundred
         $amount = $totalExpenseAmount;
         $formattedExpenseAmount = number_format($amount);
 
-        //todo: format amount in thousands and hundred
+        //format amount in thousands and hundred
         $amount = $totalIncomeAmount;
         $formattedIncomeAmount = number_format($amount);
 
 
-        //todo: get the budget count
+        // get the budget count
         $budgetcount = $user->budgets->count();
 
         return view('home', compact('firstLetters', 'transactioncount', 'budgetcount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount', 'formattedBalance'));

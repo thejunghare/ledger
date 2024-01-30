@@ -21,12 +21,16 @@ class UserTableSeeder extends Seeder
                 'name' => 'userone',
                 'email' => 'userone@gmail.com',
                 'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             // user2
             [
                 'name' => 'usertwo',
                 'email' => 'usertwo@gmail.com',
                 'password' => Hash::make('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

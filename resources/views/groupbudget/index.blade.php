@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-decoration-none " href="/g/{{ $budget->id }}">Details</a>
+                                    <a class="small text-decoration-none " href="/group/{{ $budget->id }}">Details</a>
                                     <div class="small d-flex align-items-center">
                                         <form action="/g/{{ $budget->id }}/edit" method="get">
                                             @csrf
