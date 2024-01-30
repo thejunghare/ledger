@@ -9,25 +9,26 @@
             </ol>
 
             <!-- form -->
-            <form class="py-4 " method="POST" action="{{route('groupBudget.store')}}" id="addgroupbudgetform">
+            <form class="py-4 " action="{{ route('groupBudget.store') }}"  method="POST"  id="addGroupBudgetForm">
                 @csrf
 
                 <div class="row g-3">
+                    <!-- Budget Name -->
                     <div class="col input-group mb-3">
-                        <!-- Budget Name -->
                         <span class="input-group-text" id="basic-addon1">
                             <i class="fa-solid fa-calendar-days"></i>
                         </span>
-                        <input type="text" class="form-control" required name="budget_name" placeholder="Budget name"
-                            aria-label="Budget name" id="budget_name">
+                        <input type="text" class="form-control"  name="budget_name" placeholder="Budget name"
+                            aria-label="Budget name" id="budget_name" required>
                     </div>
+                    <!-- Budget Amount -->
                     <div class="col input-group mb-3">
-                        <!-- Budget Amount -->
                         <span class="input-group-text" id="basic-addon1">
                             <i class="fa-solid fa-indian-rupee-sign"></i>
                         </span>
-                        <input id="budget_amount" type="amount" class="form-control @error('budget_amount') is-invalid @enderror"
-                            name="budget_amount" value="{{ old('budget_amount') }}" autocomplete="budget_amount" autofocus>
+                        <input id="budget_amount" type="text"
+                            class="form-control @error('budget_amount') is-invalid @enderror" name="budget_amount"
+                            value="{{ old('budget_amount') }}" autocomplete="budget_amount" autofocus>
 
                         @error('budget_amount')
                             <span class="invalid-feedback" role="alert">
@@ -42,4 +43,3 @@
         </div>
     </main>
 @endsection
-

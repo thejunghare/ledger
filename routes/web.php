@@ -130,14 +130,15 @@ Route::get('/d', [App\Http\Controllers\DetailsController::class, 'index']);
 // index
 Route::get('/group/budgets', [GroupBudgetController::class, 'index'])->name('groupBudget.index');
 
-// Dashboard
-Route::get('/group/budget/{grouptransaction}', [GroupBudgetDashboardController::class, 'show'])->name('GroupBudget.show');
-
 // create view
-Route::get('/group/budget/create', [GroupBudgetController::class, 'create'])->name('groupBudget.create');
+Route::get('/group/budget/create', function () {
+    return view('groupBudgets.create');
+})->name('groupBudget.create');
 
 // store
 Route::post('/group/budget', [GroupBudgetController::class, 'store'])->name('groupBudget.store');
+
+Route::get('/group/budget/{grouptransaction}', [GroupBudgetDashboardController::class, 'show'])->name('GroupBudget.show');
 
 // show
 Route::get('group/budget/{groupBudget}', [GroupBudgetController::class, 'show'])->name('groupBudget.show');
@@ -150,3 +151,5 @@ Route::patch('group/budget/{groupBudget}', [GroupBudgetController::class, 'updat
 
 // destroy
 Route::delete('group/budget/{groupBudget}', [GroupBudgetController::class, 'destroy'])->name('groupBudget.destroy');
+
+// Dashboard

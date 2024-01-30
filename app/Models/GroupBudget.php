@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class GroupBudget extends Model
 {
 
-    protected $fillable = ['budget_name', 'budget_amount'];
+    protected $fillable = [
+        'budget_name',
+        'budget_amount',
+    ];
+
     use HasFactory;
 
     public function user()

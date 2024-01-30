@@ -24,19 +24,14 @@ class GroupBudgetController extends Controller
     }
 
 
-    public function create()
-    {
-        $user = Auth::user();
-        return view("groupBudgets.create", compact("user"));
-    }
-
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'budget_name' => 'required',
-            'budget_amount ' => 'required',
-        ]);
 
+        //dd($request->all());
+        $data = $request->validate([
+            'budget_name' => 'required|string|unique:group_budgets,budget_name,NULL,id,user_id,' . auth()->id(),
+            'budget_amount ' => 'required|numeric|1',
+        ]);
 
         $user = $request->user();
 
@@ -44,28 +39,17 @@ class GroupBudgetController extends Controller
             return redirect('/g')->with('warning', 'Budget name exists!');
         }
 
-        $dontexist = $request->user()->groupBudgets()->create([
-            'budget_name' => $data['budget_name'],
-            'budget_amount' => $data['budget_amount'],
-        ]);
+        $newBudget = $request->user()->groupBudgets()->create($data);
 
-
-        return redirect('/group/budgets')->with([
-            'success' => 'Budget created!',
-            'groupBudget' => $dontexist,
-        ]);
+        return redirect()->route('groupBudgets.index')
+            ->with('success', 'Budget created successfully.');
     }
 
     public function show($id)
     {
         $groupBudgetID = groupBudget::find($id);
-        // get -> total amount, total transcation, total spending, total income
-        $totalbudgetamount = $groupBudgetID->budget_amount;
 
-
-
-
-        return view('groupBudgets.show', compact('groupBudgetID', 'totalbudgetamount'));
+        return view('groupBudgets.show', compact('groupBudgetID', 'budgetAmount'));
     }
 
     public function edit($id)
@@ -114,18 +98,13 @@ class GroupBudgetController extends Controller
         // get the id for budget
         $groupBudget = groupBudget::find($id);
 
-        if (!$groupBudget){
+        if (!$groupBudget) {
             return redirect('/group/budgets')->with([
                 'error' => 'Budget not found!'
             ]);
         }
 
         // delete the related transactions first
-       /*  $relatedTransactions = GroupBudgetTransaction::where('for_budget_id', $id)->get();
-        foreach ($relatedTransactions as $transaction) {
-            $transaction->delete();
-        } */
-
         $groupBudget->groupTransactions()->delete();
 
         // delete the budget itself
