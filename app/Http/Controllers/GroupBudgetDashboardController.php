@@ -59,14 +59,9 @@ class GroupBudgetDashboardController extends Controller
 
         $formattedTotalIncomeTransactionAmount = number_format($totalIncomeTransactionAmount, 2);
 
-        // get the total spending amount; total spending amount = groupBudgetAmount - totalExpenseTransactionsAmount
-        $totalSpendingAmount = $groupBudgetAmount->budget_amount - $totalExpenseTransactionAmount;
-        $formattedTotalSpendingAmount = number_format($totalSpendingAmount, 2);
-
-        // get all details about the transactions
-        /* $transactions = GroupBudgetTransaction::where('for_budget_id', $id)
-            ->where('user_id', $userID)
-            ->get(); */
+        // get the total balance amount; total balance amount = groupBudgetAmount - totalExpenseTransactionsAmount
+        $totalBalanceAmount = $groupBudgetAmount->budget_amount - $totalExpenseTransactionAmount;
+        $formattedTotalBalanceAmount = number_format($totalBalanceAmount, 2);
 
         // default categories -> other/food/etc, category type -> expense/income
         $transactions = GroupBudgetTransaction::select(
@@ -83,8 +78,6 @@ class GroupBudgetDashboardController extends Controller
             ->where('group_budget_transactions.user_id', $userID)
             ->get();
 
-
-
-        return view('groupbudget.show', compact('groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalSpendingAmount', 'transactions'));
+        return view('groupbudget.show', compact('groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
     }
 }

@@ -18,14 +18,14 @@ class CategoriesSeeder extends Seeder
             // type 1
             [
                 'category_type_id' => 1,
-                'category_name' => 'other',
+                'category_name' => 'Other',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             // type 2
             [
                 'category_type_id' => 2,
-                'category_name' => 'other',
+                'category_name' => 'Other',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

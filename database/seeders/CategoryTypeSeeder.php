@@ -18,14 +18,14 @@ class CategoryTypeSeeder extends Seeder
             // type 1
             [
 
-                'category_type' => 'income',
+                'category_type' => 'Income',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             // type 2
             [
-       
-                'category_type' => 'expense',
+
+                'category_type' => 'Expense',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

@@ -18,7 +18,7 @@ class GroupBudgetSeeder extends Seeder
             //group budget for user 1
             [
                 'user_id' => 1,
-                'budget_name' => 'budget One',
+                'budget_name' => 'Project Ledger',
                 'budget_amount' => 25000,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -26,7 +26,7 @@ class GroupBudgetSeeder extends Seeder
              //group budget for user 1
              [
                 'user_id' => 1,
-                'budget_name' => 'budget Two',
+                'budget_name' => 'Project Society',
                 'budget_amount' => 25000,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -34,7 +34,7 @@ class GroupBudgetSeeder extends Seeder
             //group budget user 2
             [
                 'user_id' => 2,
-                'budget_name' => 'budget One',
+                'budget_name' => 'Demo Inventory',
                 'budget_amount' => 25000,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -42,7 +42,7 @@ class GroupBudgetSeeder extends Seeder
              //group budget for user 1
              [
                 'user_id' => 2,
-                'budget_name' => 'budget Two',
+                'budget_name' => 'January',
                 'budget_amount' => 25000,
                 'created_at' => now(),
                 'updated_at' => now(),

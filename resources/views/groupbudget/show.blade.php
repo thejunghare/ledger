@@ -23,27 +23,27 @@
                                 ₹ {{ $formattedGroupBudgetAmount ?? 'N/A' }}
                             </div>
                         </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
+                        {{-- <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white text-decoration-none" href="/d">View Details</a>
                             <div class="small text-white "><i class="fas fa-angle-right"></i></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-warning text-white mb-4">
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div class="">
-                                Total Transaction Count:
+                                Balance:
                             </div>
                             <div class="">
-                                {{ $formattedTotalExpenseTransactionAmount ?? 'N/A' }}
+                                {{ $formattedTotalBalanceAmount ?? 'N/A' }}
                             </div>
                         </div>
 
-                        <div class="card-footer d-flex align-items-center justify-content-between">
+                        {{-- <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white text-decoration-none" href="/b">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
@@ -56,10 +56,10 @@
                                 ₹ {{ $formattedTotalIncomeTransactionAmount }}
                             </div>
                         </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
+                        {{-- <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white text-decoration-none" href="#">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
@@ -69,13 +69,13 @@
                                 Total Spending:
                             </div>
                             <div class="">
-                                ₹ {{ $formattedTotalSpendingAmount }}
+                                ₹ {{ $formattedTotalExpenseTransactionAmount }}
                             </div>
                         </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
+                        {{-- <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="small text-white text-decoration-none" href="#">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                                             {{ $serialNumber }}
                                         </td>
                                         <td>
-                                            @if ($transaction->type === '2')
+                                            @if ($transaction->transaction_type_id == 2)
                                                 <p class="text-danger mb-0">{{ $transaction->category_type }}</p>
                                             @else
                                                 <p class="text-success mb-0">{{ $transaction->category_type }}</p>
