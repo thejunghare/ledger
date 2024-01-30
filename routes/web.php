@@ -130,26 +130,26 @@ Route::get('/d', [App\Http\Controllers\DetailsController::class, 'index']);
 
 /* group budgets */
 // index
-Route::get('/g', [GroupBudgetController::class, 'index'])->name('groupBudget.index');
+Route::get('/group/budgets', [GroupBudgetController::class, 'index'])->name('groupBudget.index');
 
 // Dashboard / see details of individual group budgets
-Route::get('/group/{grouptransaction}', [GroupBudgetDashboardController::class, 'show'])->name('GroupBudgetDashboardController.show');
+Route::get('/group/budgets/{grouptransaction}', [GroupBudgetDashboardController::class, 'show'])->name('GroupBudgetDashboardController.show');
 
 
 // creaet view
-Route::get('/g/create', [GroupBudgetController::class, 'create'])->name('groupBudget.create');
+Route::get('/group/budgets/create', [GroupBudgetController::class, 'create'])->name('groupBudget.create');
 
 // store budgets
-Route::post('/g', [GroupBudgetController::class, 'store'])->name('groupBudget.store');
+Route::post('/group/budgets', [GroupBudgetController::class, 'store'])->name('groupBudget.store');
 
 // show single budget
-Route::get('g/{groupbudget}', [GroupBudgetController::class,'show'])->name('getBuget.show');
+Route::get('group/budgets/{groupbudget}', [GroupBudgetController::class,'show'])->name('getBudget.show');
 
 // edit single budget
-Route::get('g/{groupbudget}/edit', [GroupBudgetController::class,'edit'])->name('getBuget.edit');
+Route::get('group/budgets/{groupbudget}/edit', [GroupBudgetController::class,'edit'])->name('getBudget.edit');
 
 // update single budget
-Route::patch('g/{groupbudget}', [GroupBudgetController::class,'update'])->name('getBuget.update');
+Route::patch('group/budgets/{groupbudget}', [GroupBudgetController::class,'update'])->name('getBudget.update');
 
-// destory budget
-Route::delete('g/{groupbudget}', [GroupBudgetController::class,'destory'])->name('getBuget.destory');
+// destroy budget
+Route::delete('group/budgets/{groupbudget}', [GroupBudgetController::class,'destroy'])->name('getBudget.destroy');

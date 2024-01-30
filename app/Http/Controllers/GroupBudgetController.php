@@ -10,19 +10,23 @@ use Illuminate\Support\Facades\Auth;
 class GroupBudgetController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
 
     public function index()
     {
         $user = Auth::user();
         $budgets = $user ? $user->groupBudgets()->get() : [];
-        return view("groupbudget.index", compact("budgets"));
+        return view("groupBudgets.index", compact("budgets"));
     }
 
 
     public function create()
     {
         $user = Auth::user();
-        return view("groupbudget.create", compact("user"));
+        return view("groupBudgets.create", compact("user"));
     }
 
     public function store(Request $request)
@@ -45,7 +49,7 @@ class GroupBudgetController extends Controller
         ]);
 
 
-        return redirect('/g')->with([
+        return redirect('/group/budgets')->with([
             'success' => 'Budget created!',
             'groupBudget' => $dontexist,
         ]);
@@ -57,25 +61,29 @@ class GroupBudgetController extends Controller
         // get -> total amount, total transcation, total spending, total income
         $totalbudgetamount = $groupBudgetID->budget_amount;
 
-        
 
 
-        return view('groupbudget.show', compact('groupBudgetID', 'totalbudgetamount'));
+
+        return view('groupBudgets.show', compact('groupBudgetID', 'totalbudgetamount'));
     }
 
     public function edit($id)
     {
         $groupBudgetID = groupBudget::find($id);
-        return view('groupbudget.edit', compact('groupBudgetID'));
+        return view('groupBudgets.edit', compact('groupBudgetID'));
     }
 
     public function update(Request $request, $id)
     {
     }
 
-    public function destory($id)
+    public function destroy($id)
     {
         $groupBudgetID = groupBudget::find($id);
         $groupBudgetID->delete();
+
+        return redirect ('/group/budgets')->with([
+            'success' => 'Budget destroyed!'
+        ]);
     }
 }

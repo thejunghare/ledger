@@ -78,6 +78,6 @@ class GroupBudgetDashboardController extends Controller
             ->where('group_budget_transactions.user_id', $userID)
             ->get();
 
-        return view('groupbudget.show', compact('groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
+        return view('groupBudgets.show', compact('groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
     }
 }
