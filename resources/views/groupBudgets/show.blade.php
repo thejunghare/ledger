@@ -89,7 +89,7 @@
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Recent Transaction
-                    |  <a href="/group/transaction/create">Add transaction</a>
+                    |  <a href="/group/budget/transaction/create">Add transaction</a>
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -147,10 +147,10 @@
                                             {{ $transaction->paymode_type }}
                                         </td>
                                         <td class="d-flex align-items-center justify-content-center">
-                                            <a href=""
+                                            <a href="/group/budget/transaction/{groupBudgetTransaction}/edit"
                                                 class="fw-semibold text-primary text-decoration-underline">Edit</a>
 
-                                            <form action="" method="POST">
+                                            <form action="/group/budget/transaction/{{ $transaction->id }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
@@ -174,3 +174,8 @@
         </div>
     </main>
 @endsection
+
+{{--
+    code things that will reflect your presonality
+
+    --}}

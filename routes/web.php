@@ -99,6 +99,7 @@ Route::get('/t/{transactions}', [TransactionController::class, 'show'])->name('t
 
 // route
 Route::get('/get-options', [DefaultCategoriesController::class, 'getCategoryOptions']);
+Route::get('/get-paymode-options', [DefaultCategoriesController::class,'getPaymodeOptions']);
 
 //store
 Route::post('/t', 'App\Http\Controllers\TransactionController@store');
@@ -153,3 +154,10 @@ Route::patch('group/budget/{groupBudget}', [GroupBudgetController::class, 'updat
 Route::delete('group/budget/{groupBudget}', [GroupBudgetController::class, 'destroy'])->name('groupBudget.destroy');
 
 // Dashboard
+
+Route::get('/group/budget/transaction/create', function(){
+    return view('groupBudgets.transaction.create');
+});
+
+// destroy budget transactions
+Route::delete('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDashboardController::class,'destroy'])->name('groupBudgetTransaction.destroy');
