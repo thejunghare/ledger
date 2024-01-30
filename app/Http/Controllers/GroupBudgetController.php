@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\GroupBudget;
+use App\Models\GroupBudgetTransaction;
 use Illuminate\Support\Facades\Auth;
 
 class GroupBudgetController extends Controller
@@ -79,9 +80,19 @@ class GroupBudgetController extends Controller
 
     public function destroy($id)
     {
+        // get the id for budget
         $groupBudgetID = groupBudget::find($id);
-        $groupBudgetID->delete();
 
+        // delete the related transactions first
+        $relatedTransactions = GroupBudgetTransaction::where('for_budget_id', $id)->get();
+        foreach($relatedTransactions as $transaction){
+            $transaction->delete();
+        }
+
+        // delete the budget itself
+        $groupBudgetID::find($id)->delete();
+
+        // redirect on delete with flash message
         return redirect ('/group/budgets')->with([
             'success' => 'Budget destroyed!'
         ]);

@@ -60,14 +60,14 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-decoration-none " href="/group/budgets/{{ $budget->id }}">Details</a>
+                                    <a class="small text-decoration-none " href="/group/budget  /{{ $budget->id }}">Details</a>
                                     <div class="small d-flex align-items-center">
                                         <form action="/g/{{ $budget->id }}/edit" method="get">
                                             @csrf
                                             <button type="submit" class="btn"><i
                                                     class="fas fa-pencil text-success"></i></button>
                                         </form>
-                                        <form action="/b/{{ $budget->id }}" method="post">
+                                        <form action="/group/budget/{{ $budget->id }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn"><i

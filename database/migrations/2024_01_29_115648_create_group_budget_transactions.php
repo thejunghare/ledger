@@ -26,7 +26,7 @@ return new class extends Migration
                 // Foreign key constraints
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->foreign('transaction_type_id')->references('id')->on('default_category_types');
-                $table->foreign('for_budget_id')->references('id')->on('group_budgets');
+                $table->foreign('for_budget_id')->references('id')->on('group_budgets')->onDelete('cascade');
                 $table->foreign('category_id')->references('id')->on('default_categories');
                 $table->foreign('paymode_id')->references('id')->on('pay_mode');
             });
