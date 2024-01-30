@@ -89,6 +89,7 @@
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Recent Transaction
+                    |  <a href="/group/transaction/create">Add transaction</a>
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -100,6 +101,7 @@
                                 <th>Amount</th>
                                 <th>Category</th>
                                 <th>Paymode</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -110,6 +112,7 @@
                                 <th>Amount</th>
                                 <th>Category</th>
                                 <th>Paymode</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -142,6 +145,20 @@
                                         </td>
                                         <td>
                                             {{ $transaction->paymode_type }}
+                                        </td>
+                                        <td class="d-flex align-items-center justify-content-center">
+                                            <a href=""
+                                                class="fw-semibold text-primary text-decoration-underline">Edit</a>
+
+                                            <form action="" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="fw-semibold text-danger text-decoration-underline mx-2">
+                                                    Remove
+                                                </button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                     @php
