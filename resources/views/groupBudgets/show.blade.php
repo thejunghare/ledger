@@ -131,10 +131,10 @@
                                             {{ $transaction->created_at }}
                                         </td>
                                         <td>
-                                            ₹ {{ $formattedGroupBudgetAmount }}
+                                            ₹{{ $transaction->amount }}
                                         </td>
                                         <td>
-                                            {{ $transaction->category_name}}
+                                            {{ $transaction->category_name }}
                                         </td>
                                         <td>
                                             {{ $transaction->paymode_type }}

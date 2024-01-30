@@ -68,7 +68,8 @@ class GroupBudgetDashboardController extends Controller
             'group_budget_transactions.*',
             'pay_mode.paymode_type',
             'default_categories.category_name',
-            'default_category_types.category_type'
+            'default_category_types.category_type',
+            'group_budget_transactions.amount'
         )
             ->join('default_categories', 'group_budget_transactions.category_id', '=', 'default_categories.id')
             ->join('default_category_types', 'group_budget_transactions.transaction_type_id', '=', 'default_category_types.id')
