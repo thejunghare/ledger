@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Carbon\Carbon;
 use App\Models\Paymode;
 use Livewire\Component;
 use App\Models\DefaultCategories;
@@ -10,7 +11,8 @@ class DynamicSelect extends Component
 {
     public $categories = [];
     public $paymodes = [];
-    public $selectedTransactionType = 2; // Default transaction type to Expense
+    public $selectedTransactionType = 2;
+
 
     public function mount()
     {

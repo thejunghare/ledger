@@ -22,8 +22,12 @@
 
                 <div class="row g-3 mb-3">
                     {{-- date of transaction --}}
+                    @php
+                        $currentDate = date('Y-m-d');
+                    @endphp
                     <div class="col">
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <input value="{{ $currentDate }}" type="date" class="form-control" id="date" name="date"
+                            required>
                     </div>
                     {{-- amount of transaction --}}
                     <div class="col input-group">
@@ -32,7 +36,7 @@
                         <input type="number" class="form-control" id="amount" name="amount" placeholder="50" required>
                     </div>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
