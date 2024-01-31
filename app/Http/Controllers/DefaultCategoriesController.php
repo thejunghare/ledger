@@ -49,7 +49,7 @@ class DefaultCategoriesController extends Controller
         $options = DefaultCategories::whereHas('defaultCategoryType', function ($query) {
             $query->where('category_type_id', 2);
         })->get();
-        
+
         return response()->json($options);
     }
 }

@@ -97,9 +97,7 @@ Route::get('/t', [TransactionController::class, 'index'])->name('transaction.ind
 // show
 Route::get('/t/{transactions}', [TransactionController::class, 'show'])->name('transactions.show');
 
-// route
-Route::get('/get-options', [DefaultCategoriesController::class, 'getCategoryOptions']);
-Route::get('/get-paymode-options', [DefaultCategoriesController::class,'getPaymodeOptions']);
+
 
 //store
 Route::post('/t', 'App\Http\Controllers\TransactionController@store');
