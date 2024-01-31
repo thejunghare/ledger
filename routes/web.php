@@ -1,15 +1,14 @@
 <?php
 
+use App\Livewire\DeleteComponent;
+use App\Livewire\GroupBudgetTransactions\TransactionsIndex;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BudgetController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GroupBudgetController;
 use App\Http\Controllers\GroupBudgetDashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\DefaultCategoriesController;
-use App\Http\Controllers\GroupTransactionsController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
@@ -151,11 +150,17 @@ Route::patch('group/budget/{groupBudget}', [GroupBudgetController::class, 'updat
 // destroy
 Route::delete('group/budget/{groupBudget}', [GroupBudgetController::class, 'destroy'])->name('groupBudget.destroy');
 
-// Dashboard
 
+// Dashboard
 Route::get('/group/budget/transaction/create', function(){
     return view('groupBudgets.transaction.create');
 });
 
+// store budget transactions
+Route::post('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDashboardController::class,'store'])->name('groupBudgetTransaction.store');
+
 // destroy budget transactions
 Route::delete('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDashboardController::class,'destroy'])->name('groupBudgetTransaction.destroy');
+
+// livewire Route
+Route::get('/g/t', TransactionsIndex::class );

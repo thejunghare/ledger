@@ -79,12 +79,13 @@ class GroupBudgetDashboardController extends Controller
             ->where('group_budget_transactions.user_id', $userID)
             ->get();
 
-        return view('groupBudgets.show', compact('groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
+        return view('groupBudgets.show', compact('groupBudgetID','groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
     }
 
     // add transaction for group budget
-    public function store(){
-        
+    public function store(Request $request)
+    {
+        dd($request->all());
     }
 
     // delete the transactions from budget

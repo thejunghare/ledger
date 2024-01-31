@@ -21,13 +21,15 @@
                 @livewire('dynamic-select')
 
                 <div class="row g-3 mb-3">
+                <div class="col">
+                        <input value="" type="text" placeholder="Select budget" class="form-control" id="date" name="date" required>
+                    </div>
                     {{-- date of transaction --}}
                     @php
-                        $currentDate = date('Y-m-d');
+                    $currentDate = date('mm/dd/y')
                     @endphp
                     <div class="col">
-                        <input value="{{ $currentDate }}" type="date" class="form-control" id="date" name="date"
-                            required>
+                        <input value="{{$currentDate}}" type="date" class="form-control" id="date" name="date" required>
                     </div>
                     {{-- amount of transaction --}}
                     <div class="col input-group">
