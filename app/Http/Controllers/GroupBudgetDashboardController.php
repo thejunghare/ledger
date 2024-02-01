@@ -24,6 +24,9 @@ class GroupBudgetDashboardController extends Controller
 
         // get selected budget id
         $groupBudgetID = GroupBudget::find($id);
+        // dd($groupBudgetID);
+
+        $budgetId = $groupBudgetID->id;
 
         // get the group budget name
         $groupBudgetName = GroupBudget::where('user_id', $userID)
@@ -79,13 +82,26 @@ class GroupBudgetDashboardController extends Controller
             ->where('group_budget_transactions.user_id', $userID)
             ->get();
 
-        return view('groupBudgets.show', compact('groupBudgetID', 'groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
+        return view('groupBudgets.show', compact('budgetId', 'groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
     }
 
     // add transaction for group budget
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $data = $request->validate([
+            'transaction_type_id' => 'required',
+            'for_budget_id' => 'required',
+            'amount' => 'required|numeric|min:1',
+            'category_id' => 'required',
+            'paymode_id' => 'required',
+        ]);
+
+        $groupBudgetId = $data['for_budget_id'];
+
+        $request->user()->GroupBudgetTransactions()->create($data);
+
+        return redirect()->route('groupeBudget.show', $groupBudgetId)->with('success', 'Transaction added successfully!');
     }
 
     // delete the transactions from budget

@@ -1,16 +1,14 @@
 <?php
 
-use App\Livewire\DeleteComponent;
-use App\Livewire\GroupBudget\GroupBudgetIndex;
-use App\Livewire\GroupBudgetTransactions\TransactionsIndex;
+use App\Models\GroupBudget;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\GroupBudgetController;
-use App\Http\Controllers\GroupBudgetDashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\DefaultCategoriesController;
-use App\Models\GroupBudget;
+use App\Http\Controllers\GroupBudgetDashboardController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
@@ -48,7 +46,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Auth::routes();
-
 
 // Dashboard
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -128,7 +125,7 @@ Route::get('/d', [App\Http\Controllers\DetailsController::class, 'index']);
 /* group budgets */
 
 // index
- Route::get('/group/budgets', [GroupBudgetController::class, 'index'])->name('groupBudget.index');
+Route::get('/group/budgets', [GroupBudgetController::class, 'index'])->name('groupBudget.index');
 
 
 // create view
@@ -155,13 +152,16 @@ Route::delete('group/budget/{groupBudget}', [GroupBudgetController::class, 'dest
 
 
 // Dashboard
-Route::get('/group/budget/transaction/create', function(){
-    return view('groupBudgets.transaction.create');
+Route::get('/group/budget/{budgetId}/transaction/create', function ($budgetId) {
+    // Access the budget ID here using $budgetId
+    return view('groupBudgets.transaction.create', ['budgetId' => $budgetId]);
 });
 
 // store budget transactions
-Route::post('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDashboardController::class,'store'])->name('groupBudgetTransaction.store');
+Route::post('/group/budget/transaction', [GroupBudgetDashboardController::class, 'store'])->name('groupBudgetTransaction.store');
 
 // destroy budget transactions
-Route::delete('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDashboardController::class,'destroy'])->name('groupBudgetTransaction.destroy');
+Route::delete('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDashboardController::class, 'destroy'])->name('groupBudgetTransaction.destroy');
+
+// Route::resource('products', GroupBudgetController::class);
 

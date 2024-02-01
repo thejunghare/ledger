@@ -15,21 +15,24 @@
             </nav>
 
             <!-- form -->
-            <form class="" method="post" action="/t">
+            <form class="" method="post" action="{{route('groupBudgetTransaction.store')}}">
                 @csrf
 
                 @livewire('dynamic-select')
 
-                <div class="row g-3 mb-3">
+                {{-- budget id to add the transaction --}}
                 <div class="col">
-                        <input value="" type="text" placeholder="Select budget" class="form-control" id="date" name="date" required>
-                    </div>
+                    {{-- i want the id here  --}}
+                    <input value="{{ $budgetId }}" hidden type="text" placeholder="Selected budget"
+                        class="form-control" id="date" name="for_budget_id" required>
+                </div>
+
+                <div class="row g-3 mb-3">
+
                     {{-- date of transaction --}}
-                    @php
-                    $currentDate = date('mm/dd/y')
-                    @endphp
                     <div class="col">
-                        <input value="{{$currentDate}}" type="date" class="form-control" id="date" name="date" required>
+                        <input type="date" class="form-control" id="date" name="date"
+                            required>
                     </div>
                     {{-- amount of transaction --}}
                     <div class="col input-group">
@@ -44,3 +47,12 @@
         </div>
     </main>
 @endsection
+
+{{--
+    Things i need
+    - type of transaction - done
+    - for budget - done
+    - amount - done
+    - categoryid - done
+    - paymodeid - done
+--}}

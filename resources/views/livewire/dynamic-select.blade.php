@@ -26,7 +26,7 @@
     <div class="row g-3 mb-3">
         {{-- category --}}
         <div class="col">
-            <select wire:model="selectedCategory" class="form-select" aria-label="Default select example" name="category" id="categoryOptions">
+            <select wire:model="selectedCategory" class="form-select" aria-label="Default select example" name="category" id="categoryOptions" required>
                 <option disabled selected value="">Select Category</option>
                 @foreach ($categories as $category)
                     <option value={{ $category->id }}> {{$category->category_name}} </option>
@@ -35,7 +35,7 @@
         </div>
         {{-- paymode --}}
         <div class="col">
-            <select wire:model="selectedPaymode" class="form-select" aria-label="Default select example" name="paymode">
+            <select wire:model="selectedPaymode" class="form-select" aria-label="Default select example" name="paymode" required>
                 <option value="" disabled selected>Select payment mode</option>
                 @foreach ($paymodes as $paymode)
                     <option value="{{$paymode->id}}" >{{ $paymode->paymode_type }}</option>

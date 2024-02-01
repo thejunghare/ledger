@@ -2,6 +2,28 @@
 
 @section('content')
     <main>
+        @if (session('success'))
+            <div class="position-relative mt-2">
+                <div class="z-3 position-absolute top-0 start-50 translate-middle-x" id="alertsuccess">
+                    <div class="alert alert-success fade show" role="alert" aria-live="polite">
+                        <small> <i class="fas fa-check-circle me-2"></i>
+                            {{ session('success') }}</small>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class=" position-relative mt-2">
+                <div class="z-3 position-absolute top-0 start-50 translate-middle-x" id="alerterror">
+                    <div class="alert alert-danger fade show" role="alert">
+                        <small> <i class="fa-solid fa-circle-exclamation me-2"></i>
+                            {{ session('error') }} </small>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <div class="container-fluid px-4">
             {{-- header to display group name --}}
             <h1 class="mt-4">{{ $groupBudgetName->budget_name }}</h1>
@@ -91,7 +113,7 @@
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Recent Transaction
-                    | <a href="/group/budget/transaction/create">Add transaction</a>
+                    | <a href="/group/budget/{{ $budgetId }}/transaction/create">Add transaction</a>
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -171,9 +193,23 @@
                         </tbody>
                     </table>
                 </div>
-                @livewireScripts
             </div>
         </div>
+        <script>
+            const successAlert = document.querySelector('.alert-success');
+            if (successAlert) {
+                setTimeout(() => {
+                    successAlert.classList.remove('show');
+                }, 3000);
+            }
+
+            const errorAlert = document.querySelector('.alert-danger');
+            if (errorAlert) {
+                setTimeout(() => {
+                    errorAlert.classList.remove('show');
+                }, 3000);
+            }
+        </script>
     </main>
 @endsection
 

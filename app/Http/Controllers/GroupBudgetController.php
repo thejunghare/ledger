@@ -27,13 +27,24 @@ class GroupBudgetController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->all());
-        $data = $request->validate([
+        /* $data = $request->validate([
             'budget_name' => 'required|string|unique:group_budgets,budget_name,NULL,id,user_id,' . auth()->id(),
-            'budget_amount ' => 'required|numeric|1',
+            'budget_amount ' => 'required|numeric|min:1',
+        ]); */
+
+        dd($request->validate([
+            'budget_name' => 'required|unique:group_budgets',
+            'budget_amount' => 'required|min:1',
+        ]));
+
+        $validated = $request->validate([
+            'budget_name' => 'required|unique:group_budgets',
+            'budget_amount' => 'required',
         ]);
 
         $user = $request->user();
+
+        $data = $request->all();
 
         if ($user->groupBudgets()->where('budget_name', $data['budget_name'])->exists()) {
             return redirect('/g')->with('warning', 'Budget name exists!');
@@ -41,7 +52,7 @@ class GroupBudgetController extends Controller
 
         $newBudget = $request->user()->groupBudgets()->create($data);
 
-        return redirect()->route('groupBudgets.index')
+        return redirect()->route('groupBudget.index')
             ->with('success', 'Budget created successfully.');
     }
 

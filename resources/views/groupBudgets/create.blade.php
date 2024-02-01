@@ -9,24 +9,46 @@
             </ol>
 
             <!-- form -->
-            <form class="py-4 " action="{{ route('groupBudget.store') }}"  method="POST"  id="addGroupBudgetForm">
+            <form class="py-4 " action="{{ route('groupBudget.store') }}" method="POST" id="addGroupBudgetForm">
                 @csrf
+                {{-- @dd($errors->all()); --}}
+
 
                 <div class="row g-3">
                     <!-- Budget Name -->
-                    <div class="col input-group mb-3">
+                    {{-- <div class="col input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <i class="fa-solid fa-calendar-days"></i>
                         </span>
-                        <input type="text" class="form-control"  name="budget_name" placeholder="Budget name"
-                            aria-label="Budget name" id="budget_name" required>
+                        <input type="number" class="form-control" name="budget_name" placeholder="Budget name"
+                        value="{{ old('budget_name') }}" aria-label="Budget name" id="budget_name" required @error('budget_name') is-invalid @enderror">
+
+                        @error('budget_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div> --}}
+                    <div class="col input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                        </span>
+                        <input id="budget_name" type="text"
+                            class="form-control @error('budget_name') is-invalid @enderror" name="budget_name"
+                            value="{{ old('budget_name') }}" autocomplete="budget_name" autofocus>
+
+                        @error('budget_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <!-- Budget Amount -->
                     <div class="col input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <i class="fa-solid fa-indian-rupee-sign"></i>
                         </span>
-                        <input id="budget_amount" type="text"
+                        <input id="budget_amount" type="number"
                             class="form-control @error('budget_amount') is-invalid @enderror" name="budget_amount"
                             value="{{ old('budget_amount') }}" autocomplete="budget_amount" autofocus>
 
