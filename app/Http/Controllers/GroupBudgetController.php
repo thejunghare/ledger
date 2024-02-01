@@ -32,14 +32,14 @@ class GroupBudgetController extends Controller
             'budget_amount ' => 'required|numeric|min:1',
         ]); */
 
-        dd($request->validate([
+        /* dd($request->validate([
             'budget_name' => 'required|unique:group_budgets',
             'budget_amount' => 'required|min:1',
-        ]));
+        ])); */
 
         $validated = $request->validate([
-            'budget_name' => 'required|unique:group_budgets',
-            'budget_amount' => 'required',
+            'budget_name' => 'required|unique:group_budgets,budget_name,NULL,id,user_id,' . auth()->id(),
+            'budget_amount' => 'required|numeric|min:1',
         ]);
 
         $user = $request->user();

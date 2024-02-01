@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('group_budgets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('budget_name')->unique();
+            $table->string('budget_name');
             $table->integer('budget_amount')->unsigned();
             $table->timestamps();
 
