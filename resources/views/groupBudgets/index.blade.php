@@ -24,6 +24,7 @@
             </div>
         @endif
 
+
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between align-items-end">
                 <div>
@@ -36,8 +37,8 @@
                 </div>
             </div>
 
-             {{-- breadcrumb --}}
-             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            {{-- breadcrumb --}}
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Group budgets</li>
@@ -63,7 +64,8 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-decoration-none " href="/group/budget/{{ $budget->id }}">Details</a>
+                                    <a class="small text-decoration-none "
+                                        href="/group/budget/{{ $budget->id }}">Details</a>
                                     <div class="small d-flex align-items-center">
                                         <form action="/group/budget/{{ $budget->id }}/edit" method="get">
                                             @csrf

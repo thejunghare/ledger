@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\DeleteComponent;
+use App\Livewire\GroupBudget\GroupBudgetIndex;
 use App\Livewire\GroupBudgetTransactions\TransactionsIndex;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,7 @@ use App\Http\Controllers\GroupBudgetController;
 use App\Http\Controllers\GroupBudgetDashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\DefaultCategoriesController;
+use App\Models\GroupBudget;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
@@ -126,7 +128,8 @@ Route::get('/d', [App\Http\Controllers\DetailsController::class, 'index']);
 /* group budgets */
 
 // index
-Route::get('/group/budgets', [GroupBudgetController::class, 'index'])->name('groupBudget.index');
+ Route::get('/group/budgets', [GroupBudgetController::class, 'index'])->name('groupBudget.index');
+
 
 // create view
 Route::get('/group/budget/create', function () {
@@ -162,5 +165,3 @@ Route::post('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDa
 // destroy budget transactions
 Route::delete('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDashboardController::class,'destroy'])->name('groupBudgetTransaction.destroy');
 
-// livewire Route
-Route::get('/g/t', TransactionsIndex::class );
