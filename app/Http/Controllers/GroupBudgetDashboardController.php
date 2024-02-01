@@ -79,7 +79,7 @@ class GroupBudgetDashboardController extends Controller
             ->where('group_budget_transactions.user_id', $userID)
             ->get();
 
-        return view('groupBudgets.show', compact('groupBudgetID','groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
+        return view('groupBudgets.show', compact('groupBudgetID', 'groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
     }
 
     // add transaction for group budget
@@ -91,15 +91,14 @@ class GroupBudgetDashboardController extends Controller
     // delete the transactions from budget
     public function destroy($id)
     {
-        // get the id for transaction
-        $transaction = GroupBudgetTransaction::find($id);
-        //dd($transaction);
 
-        // get the budget ID
+        $transaction = GroupBudgetTransaction::find($id);
         $groupBudgetID = $transaction->for_budget_id;
-        // dd($groupBudgetID);
 
         $transaction->delete();
-        return redirect('/group/budget/$groupBudgetID')->with("success", "Transaction destroy!");
+
+        return redirect()->route('groupBudget.show', $groupBudgetID)
+            ->with('success', 'Transaction deleted successfully!');
     }
+
 }
