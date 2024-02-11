@@ -84,8 +84,10 @@
                         </div>
                     @endforeach
                 @endif
+                {!! $budgets->links() !!}
             </div>
         </div>
+
 
         <script>
             const successAlert = document.querySelector('.alert-success');

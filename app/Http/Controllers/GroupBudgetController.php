@@ -19,7 +19,7 @@ class GroupBudgetController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $budgets = $user ? $user->groupBudgets()->get() : [];
+        $budgets = $user ? $user->groupBudgets()->orderBy('created_at')->paginate(1) : [];
         return view("groupBudgets.index", compact("budgets"));
     }
 

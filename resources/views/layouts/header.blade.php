@@ -7,7 +7,7 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title>
-        {{$title ?? 'ledger'}}
+        {{ $title ?? 'ledger' }}
     </title>
 
     <!-- Fonts -->

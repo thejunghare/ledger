@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\GroupBudgetController;
+use App\Http\Controllers\PaymentModeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\DefaultCategoriesController;
 use App\Http\Controllers\GroupBudgetDashboardController;
@@ -164,4 +165,7 @@ Route::post('/group/budget/transaction', [GroupBudgetDashboardController::class,
 Route::delete('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDashboardController::class, 'destroy'])->name('groupBudgetTransaction.destroy');
 
 // Route::resource('products', GroupBudgetController::class);
+
+// fetch the default category and payment modes
+Route::get('/get-paymode-option', [PaymentModeController::class, 'getOptions'])->name('getPaymentModeOptions');
 

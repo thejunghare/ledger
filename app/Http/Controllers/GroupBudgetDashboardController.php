@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\GroupBudget;
-use App\Models\GroupBudgetTransaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Models\GroupBudgetTransaction;
 
 class GroupBudgetDashboardController extends Controller
 {
@@ -86,10 +87,9 @@ class GroupBudgetDashboardController extends Controller
     }
 
     // add transaction for group budget
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        // dd($request->all());
-        $data = $request->validate([
+        $validated = $request->validate([
             'transaction_type_id' => 'required',
             'for_budget_id' => 'required',
             'amount' => 'required|numeric|min:1',
@@ -97,11 +97,16 @@ class GroupBudgetDashboardController extends Controller
             'paymode_id' => 'required',
         ]);
 
+        dd($request->all());
+
+        $data = $request->all();
         $groupBudgetId = $data['for_budget_id'];
+        // dd($groupBudgetId);
 
-        $request->user()->GroupBudgetTransactions()->create($data);
+        $newTransaction = $request->user()->GroupBudgetTransactions()->create($data);
 
-        return redirect()->route('groupeBudget.show', $groupBudgetId)->with('success', 'Transaction added successfully!');
+        return redirect()->route('groupeBudget.show', $groupBudgetId)->with('success', 'Transaction added');
+        // return to_route('post.show', ['post' => $post->id]);
     }
 
     // delete the transactions from budget

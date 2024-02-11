@@ -108,8 +108,82 @@
 
             {{-- {{ $transactions }} --}}
 
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Transaction</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @if ($transactions->isEmpty())
+                            <p>No transactions available.</p>
+                        @else
+                            @php
+                                $serialNumber = 1;
+                            @endphp
+                            @foreach ($transactions as $transaction)
+                                <tr>
+                                    <th scope="row"> {{ $serialNumber }}</th>
+                                    <td>
+                                        @if ($transaction->transaction_type_id == 2)
+                                            <p class="text-danger mb-0">{{ $transaction->category_type }}</p>
+                                        @else
+                                            <p class="text-success mb-0">{{ $transaction->category_type }}</p>
+                                        @endif
+                                    </td>
+                                    <td>{{ $transaction->created_at }}</td>
+                                    <td> ₹{{ $transaction->amount }}</td>
+                                    <td> {{ $transaction->category_name }}</td>
+                                    <td>{{ $transaction->paymode_type }}</td>
+                                    <td class="d-flex align-items-center justify-content-start">
+                                        <a href="/group/budget/transaction/{groupBudgetTransaction}/edit"
+                                            class="fw-semibold text-primary text-decoration-underline">
+                                            <span>
+                                                <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+
+                                        <form action="/group/budget/transaction/{{ $transaction->id }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="btn fw-semibold bg-white btn-outline-light border-none text-danger text-decoration-underline mx-2"
+                                                wire:click="delete">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @php
+                                    $serialNumber++;
+                                @endphp
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="position-relative">
+                <div class="position-absolute top-0 end-0">
+                    <a href="/group/budget/{{ $budgetId }}/transaction/create"
+                        class="fw-semibold text-primary text-decoration-underline" data-bs-toggle="tooltip"
+                        data-bs-title="Add transaction">
+                        <span>
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
             {{-- table --}}
-            <div class="card mb-4">
+            {{-- <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Recent Transaction
@@ -193,7 +267,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <script>
             const successAlert = document.querySelector('.alert-success');
