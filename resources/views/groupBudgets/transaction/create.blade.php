@@ -85,12 +85,9 @@
                 <div class="row g-3 mb-3">
                     {{-- category --}}
                     <div class="col">
-                        <select wire:model="selectedCategory" class="form-select" aria-label="Default select example"
-                            name="category" id="categoryOptions" required>
-                            <option disabled selected value="">Select Category</option>
-                            {{-- @foreach ($categories as $category)
-                                <option value={{ $category->id }}> {{ $category->category_name }} </option>
-                            @endforeach --}}
+                        <select id="category-options" class="form-select" aria-label="Default select example"
+                            name="category" required>
+                            <option value="" disabled selected>Select category</option>
                         </select>
                     </div>
                     {{-- paymode --}}
@@ -109,19 +106,38 @@
 
         <script>
             $(document).ready(function() {
-                var selectElement = $('#paymode-options');
+                var paymodeSelectOption = $('#paymode-options');
+                var categorySelectOption = $('#category-options');
 
                 $.ajax({
                     url: '/paymode-options',
                     method: 'GET',
                     success: function(data) {
-                        selectElement.empty();
-                        selectElement.append(
+                        paymodeSelectOption.empty();
+                        paymodeSelectOption.append(
                             '<option value="" disabled selected>Select payment mode</option>');
 
                         $.each(data, function(index, option) {
-                            selectElement.append('<option value="' + option.id + '">' + option
+                            paymodeSelectOption.append('<option value="' + option.id + '">' + option
                                 .paymode_type + '</option>');
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error fetching payment options:', error);
+                    }
+                });
+
+                $.ajax({
+                    url: '/categories-options',
+                    method: 'GET',
+                    success: function(data) {
+                        categorySelectOption.empty();
+                        categorySelectOption.append(
+                            '<option value="" disabled selected>Select category mode</option>');
+
+                        $.each(data, function(index, option) {
+                            categorySelectOption.append('<option value="' + option.id + '">' + option
+                                .category_name + '</option>');
                         });
                     },
                     error: function(error) {
