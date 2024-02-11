@@ -21,54 +21,55 @@
 
                 {{-- type of transaction --}}
                 <div class="d-flex align-items-center justify-content-between mb-3">
-    {{-- Expense --}}
-    <div class="form-check">
-        <input class="form-check-input @error('transaction_type_id') is-invalid @enderror" type="radio"
-            name="transaction_type_id" id="expense" value="2" checked autocomplete="transaction_type_id" autofocus>
-            <label class="form-check-label" for="expense">
-                Expense
-            </label>
-            @error('transaction_type_id')
-            <span role="alert" class="invalid-feedback">
-                <strong>
-                    {{ $message }}
-                </strong>
-            </span>
-            @enderror
-        </div>
-        {{-- Income --}}
-        <div class="form-check">
-            <input class="form-check-input @error('transaction_type_id') is-invalid @enderror" type="radio"
-                name="transaction_type_id" id="income" value="1" autocomplete="transaction_type_id" autofocus>
-            <label class="form-check-label" for="income">
-                Income
-            </label>
-            @error('transaction_type_id')
-            <span role="alert" class="invalid-feedback">
-                <strong>
-                    {{ $message }}
-                </strong>
-            </span>
-            @enderror
-        </div>
-        {{-- Transfer --}}
-        <div class="form-check">
-            <input class="form-check-input @error('transaction_type_id') is-invalid @enderror " type="radio"
-                name="transaction_type_id" id="transfer" value="3" disabled autocomplete="transaction_type_id" autofocus>
-            <label class="form-check-label" for="transfer">
-                Transfer
-            </label>
-            @error('transaction_type_id')
-            <span role="alert" class="invalid-feedback">
-                <strong>
-                    {{ $message }}
-                </strong>
-            </span>
-            @enderror
-        </div>
-    </div>
-
-
+                    {{-- Expense --}}
+                    <div class="form-check">
+                        <input class="form-check-input @error('transaction_type_id') is-invalid @enderror" type="radio"
+                            name="transaction_type_id" id="expense" value="2" checked
+                            autocomplete="transaction_type_id" autofocus>
+                        <label class="form-check-label" for="expense">
+                            Expense
+                        </label>
+                        @error('transaction_type_id')
+                            <span role="alert" class="invalid-feedback">
+                                <strong>
+                                    {{ $message }}
+                                </strong>
+                            </span>
+                        @enderror
+                    </div>
+                    {{-- Income --}}
+                    <div class="form-check">
+                        <input class="form-check-input @error('transaction_type_id') is-invalid @enderror" type="radio"
+                            name="transaction_type_id" id="income" value="1" autocomplete="transaction_type_id"
+                            autofocus>
+                        <label class="form-check-label" for="income">
+                            Income
+                        </label>
+                        @error('transaction_type_id')
+                            <span role="alert" class="invalid-feedback">
+                                <strong>
+                                    {{ $message }}
+                                </strong>
+                            </span>
+                        @enderror
+                    </div>
+                    {{-- Transfer --}}
+                    <div class="form-check">
+                        <input class="form-check-input @error('transaction_type_id') is-invalid @enderror " type="radio"
+                            name="transaction_type_id" id="transfer" value="3" disabled
+                            autocomplete="transaction_type_id" autofocus>
+                        <label class="form-check-label" for="transfer">
+                            Transfer
+                        </label>
+                        @error('transaction_type_id')
+                            <span role="alert" class="invalid-feedback">
+                                <strong>
+                                    {{ $message }}
+                                </strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
 
                 {{-- budget id to add the transaction --}}
                 <div class="col">
