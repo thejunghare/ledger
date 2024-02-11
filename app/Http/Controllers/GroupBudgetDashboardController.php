@@ -81,7 +81,7 @@ class GroupBudgetDashboardController extends Controller
             ->join('pay_mode', 'group_budget_transactions.paymode_id', '=', 'pay_mode.id')
             ->where('group_budget_transactions.for_budget_id', $id)
             ->where('group_budget_transactions.user_id', $userID)
-            ->get();
+            ->paginate(5);
 
         return view('groupBudgets.show', compact('budgetId', 'groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
     }

@@ -48,6 +48,78 @@ class GroupTransactionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+             // user 1
+             [
+                'user_id' => 1,
+                'transaction_type_id' => 2,
+                'for_budget_id'=> 2,
+                'amount'=> 500,
+                'category_id' => 1,
+                'paymode_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+             // user 1
+             [
+                'user_id' => 1,
+                'transaction_type_id' => 2,
+                'for_budget_id'=> 2,
+                'amount'=> 500,
+                'category_id' => 1,
+                'paymode_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+             // user 1
+             [
+                'user_id' => 1,
+                'transaction_type_id' => 2,
+                'for_budget_id'=> 2,
+                'amount'=> 500,
+                'category_id' => 1,
+                'paymode_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+             // user 1
+             [
+                'user_id' => 1,
+                'transaction_type_id' => 2,
+                'for_budget_id'=> 2,
+                'amount'=> 500,
+                'category_id' => 1,
+                'paymode_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+             // user 1
+             [
+                'user_id' => 1,
+                'transaction_type_id' => 2,
+                'for_budget_id'=> 2,
+                'amount'=> 500,
+                'category_id' => 1,
+                'paymode_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+             // user 1
+             [
+                'user_id' => 1,
+                'transaction_type_id' => 2,
+                'for_budget_id'=> 2,
+                'amount'=> 500,
+                'category_id' => 1,
+                'paymode_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
             // user 2
             [
                 'user_id' => 2,

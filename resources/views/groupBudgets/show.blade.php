@@ -106,8 +106,6 @@
                 </div>
             </div>
 
-            {{-- {{ $transactions }} --}}
-
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -122,54 +120,53 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        @if ($transactions->isEmpty())
-                            <p>No transactions available.</p>
-                        @else
-                            @php
-                                $serialNumber = 1;
-                            @endphp
-                            @foreach ($transactions as $transaction)
-                                <tr>
-                                    <th scope="row"> {{ $serialNumber }}</th>
-                                    <td>
-                                        @if ($transaction->transaction_type_id == 2)
-                                            <p class="text-danger mb-0">{{ $transaction->category_type }}</p>
-                                        @else
-                                            <p class="text-success mb-0">{{ $transaction->category_type }}</p>
-                                        @endif
-                                    </td>
-                                    <td>{{ $transaction->created_at }}</td>
-                                    <td> ₹{{ $transaction->amount }}</td>
-                                    <td> {{ $transaction->category_name }}</td>
-                                    <td>{{ $transaction->paymode_type }}</td>
-                                    <td class="d-flex align-items-center justify-content-start">
-                                        <a href="/group/budget/transaction/{groupBudgetTransaction}/edit"
-                                            class="fw-semibold text-primary text-decoration-underline">
-                                            <span>
-                                                <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
+                        @php
+                            $serialNumber = 1;
+                        @endphp
+                        @forelse ($transactions as $transaction)
+                            <tr>
+                                <th scope="row"> {{ $serialNumber++ }}</th>
+                                <td>
+                                    @if ($transaction->transaction_type_id == 2)
+                                        <p class="text-danger mb-0">{{ $transaction->category_type }}</p>
+                                    @else
+                                        <p class="text-success mb-0">{{ $transaction->category_type }}</p>
+                                    @endif
+                                </td>
+                                <td>{{ $transaction->created_at }}</td>
+                                <td> ₹{{ $transaction->amount }}</td>
+                                <td> {{ $transaction->category_name }}</td>
+                                <td>{{ $transaction->paymode_type }}</td>
+                                <td class="d-flex align-items-center justify-content-start">
+                                    <a href="/group/budget/transaction/{groupBudgetTransaction}/edit"
+                                        class="fw-semibold text-primary text-decoration-underline">
+                                        <span>
+                                            <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                                        </span>
+                                    </a>
 
-                                        <form action="/group/budget/transaction/{{ $transaction->id }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="btn fw-semibold bg-white btn-outline-light border-none text-danger text-decoration-underline mx-2"
-                                                wire:click="delete">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @php
-                                    $serialNumber++;
-                                @endphp
-                            @endforeach
-                        @endif
+                                    <form action="/group/budget/transaction/{{ $transaction->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="btn fw-semibold bg-white btn-outline-light border-none text-danger text-decoration-underline mx-2"
+                                            wire:click="delete">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                        @empty
+                            <p>No transactions available.</p>
+                        @endforelse
                     </tbody>
                 </table>
+
+                {!! $transactions->links() !!}
             </div>
 
+            {{-- add budget transcations --}}
             <div class="position-relative">
                 <div class="position-absolute top-0 end-0">
                     <a href="/group/budget/{{ $budgetId }}/transaction/create"
@@ -181,94 +178,8 @@
                     </a>
                 </div>
             </div>
-
-            {{-- table --}}
-            {{-- <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    Recent Transaction
-                    | <a href="/group/budget/{{ $budgetId }}/transaction/create">Add transaction</a>
-                </div>
-                <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
-                            <tr>
-                                <th>Sr.No</th>
-                                <th>Type</th>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Category</th>
-                                <th>Paymode</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Sr.No</th>
-                                <th>Type</th>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Category</th>
-                                <th>Paymode</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            @if ($transactions->isEmpty())
-                                <p>No transactions available.</p>
-                            @else
-                                @php
-                                    $serialNumber = 1;
-                                @endphp
-                                @foreach ($transactions as $transaction)
-                                    <tr>
-                                        <td>
-                                            {{ $serialNumber }}
-                                        </td>
-                                        <td>
-                                            @if ($transaction->transaction_type_id == 2)
-                                                <p class="text-danger mb-0">{{ $transaction->category_type }}</p>
-                                            @else
-                                                <p class="text-success mb-0">{{ $transaction->category_type }}</p>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            {{ $transaction->created_at }}
-                                        </td>
-                                        <td>
-                                            ₹{{ $transaction->amount }}
-                                        </td>
-                                        <td>
-                                            {{ $transaction->category_name }}
-                                        </td>
-                                        <td>
-                                            {{ $transaction->paymode_type }}
-                                        </td>
-                                        <td class="d-flex align-items-center justify-content-center">
-                                            <a href="/group/budget/transaction/{groupBudgetTransaction}/edit"
-                                                class="fw-semibold text-primary text-decoration-underline">Edit</a>
-
-                                            <form action="/group/budget/transaction/{{ $transaction->id }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="fw-semibold text-danger text-decoration-underline mx-2"
-                                                    wire:click="delete">
-                                                    Remove
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @php
-                                        $serialNumber++;
-                                    @endphp
-                                @endforeach
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-            </div> --}}
         </div>
+
         <script>
             const successAlert = document.querySelector('.alert-success');
             if (successAlert) {
