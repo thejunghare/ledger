@@ -89,6 +89,8 @@ class GroupBudgetDashboardController extends Controller
     // add transaction for group budget
     public function store(Request $request): RedirectResponse
     {
+        // dd($request->all());
+
         $validated = $request->validate([
             'transaction_type_id' => 'required',
             'for_budget_id' => 'required',
@@ -97,7 +99,7 @@ class GroupBudgetDashboardController extends Controller
             'paymode_id' => 'required',
         ]);
 
-        dd($request->all());
+        // dd($request->all());
 
         $data = $request->all();
         $groupBudgetId = $data['for_budget_id'];
@@ -105,8 +107,7 @@ class GroupBudgetDashboardController extends Controller
 
         $newTransaction = $request->user()->GroupBudgetTransactions()->create($data);
 
-        return redirect()->route('groupeBudget.show', $groupBudgetId)->with('success', 'Transaction added');
-        // return to_route('post.show', ['post' => $post->id]);
+        return redirect()->route('GroupBudget.show', $groupBudgetId)->with('success', 'Transaction added');
     }
 
     // delete the transactions from budget

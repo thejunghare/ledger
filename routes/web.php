@@ -154,7 +154,6 @@ Route::delete('group/budget/{groupBudget}', [GroupBudgetController::class, 'dest
 
 // Dashboard
 Route::get('/group/budget/{budgetId}/transaction/create', function ($budgetId) {
-    // Access the budget ID here using $budgetId
     return view('groupBudgets.transaction.create', ['budgetId' => $budgetId]);
 });
 

@@ -23,7 +23,6 @@
             <label class="form-check-label" for="transfer">
                 Transfer
             </label>
-
         </div>
     </div>
 
