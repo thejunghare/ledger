@@ -61,109 +61,127 @@ Route::get('/fetchcategories', [DefaultCategoriesController::class, 'showRecords
     return view('/budgets/set');
 }); */
 
+/*
+|--------------------------------------------------------------------------
+| Budgets
+|--------------------------------------------------------------------------
+*/
+
 // add
 Route::get('/b/create', function () {
     return view('/budgets/store');
 });
-
 //index
 Route::get('/b', [BudgetController::class, 'index'])->name('budgets.index');
-
 // show
 Route::get('/b/{budgets}', [BudgetController::class, 'show'])->name('budgets.show');
-
 //store
 Route::post('/b', 'App\Http\Controllers\BudgetController@store');
-
 // edit
 Route::get('/b/{budgets}/edit', [BudgetController::class, 'edit'])->name('budgets.edit');
-
 // update
 Route::put('/b/{budgets}', [BudgetController::class, 'update'])->name('budgets.update');
-
 //destroy
 Route::delete('/b/{budgets}', [BudgetController::class, 'destroy'])->name('budgets.destroy');
 
+
+/*
+|--------------------------------------------------------------------------
+| Budget transactions
+|--------------------------------------------------------------------------
+*/
 
 // add
 Route::get('/t/create', function () {
     return view('/transactions/store');
 });
-
 //show
 Route::get('/t', [TransactionController::class, 'index'])->name('transaction.index');
-
 // show
 Route::get('/t/{transactions}', [TransactionController::class, 'show'])->name('transactions.show');
-
-
-
 //store
 Route::post('/t', 'App\Http\Controllers\TransactionController@store');
-
 // edit
 Route::get('/t/{transactions}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
-
 // update
 Route::put('/t/{transactions}', [TransactionController::class, 'update'])->name('transactions.update');
-
 //destroy
 Route::delete('/t/{transactions}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
-
 //about page
 Route::get('/a', function () {
     return view('/about/show');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Payments
+|--------------------------------------------------------------------------
+*/
 
 //payments page
 Route::get('/p', function () {
     return view('/payments/show');
 });
 
+/*
+|--------------------------------------------------------------------------
+| details
+|--------------------------------------------------------------------------
+*/
+
 // see all details
 Route::get('/d', [App\Http\Controllers\DetailsController::class, 'index']);
 
-/* group budgets */
+/*
+|--------------------------------------------------------------------------
+| Group budget
+|--------------------------------------------------------------------------
+*/
 
 // index
 Route::get('/group/budgets', [GroupBudgetController::class, 'index'])->name('groupBudget.index');
-
-
 // create view
 Route::get('/group/budget/create', function () {
     return view('groupBudgets.create');
 })->name('groupBudget.create');
-
 // store
 Route::post('/group/budget', [GroupBudgetController::class, 'store'])->name('groupBudget.store');
-
 Route::get('/group/budget/{grouptransaction}', [GroupBudgetDashboardController::class, 'show'])->name('GroupBudget.show');
-
 // show
 Route::get('group/budget/{groupBudget}', [GroupBudgetController::class, 'show'])->name('groupBudget.show');
-
 // edit
 Route::get('group/budget/{groupBudget}/edit', [GroupBudgetController::class, 'edit'])->name('GroupBudgetController.edit');
-
 // update
 Route::patch('group/budget/{groupBudget}', [GroupBudgetController::class, 'update'])->name('groupBudget.update');
-
 // destroy
 Route::delete('group/budget/{groupBudget}', [GroupBudgetController::class, 'destroy'])->name('groupBudget.destroy');
-
 
 // Dashboard
 Route::get('/group/budget/{budgetId}/transaction/create', function ($budgetId) {
     return view('groupBudgets.transaction.create', ['budgetId' => $budgetId]);
 });
 
-// store budget transactions
+/*
+|--------------------------------------------------------------------------
+| Group budget transactions
+|--------------------------------------------------------------------------
+*/
+
+// store
 Route::post('/group/budget/transaction', [GroupBudgetDashboardController::class, 'store'])->name('groupBudgetTransaction.store');
-
-// destroy budget transactions
+// edit
+Route::get('group/budget/{groupBudget}/edit', [GroupBudgetController::class, 'edit'])->name('GroupBudgetController.edit');
+// update
+Route::patch('group/budget/{groupBudget}', [GroupBudgetController::class, 'update'])->name('groupBudget.update');
+// destroy
 Route::delete('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudgetDashboardController::class, 'destroy'])->name('groupBudgetTransaction.destroy');
+// Route::resource('groupBudgetTransaction', GroupBudgetDashboardController::class);
 
-// Route::resource('products', GroupBudgetController::class);
+/*
+|--------------------------------------------------------------------------
+| Fetch options using ajax
+|--------------------------------------------------------------------------
+*/
 
 // fetch payment modes
 Route::get('/paymode-options', [PaymentModeController::class, 'getOptions'])->name('paymode-options');
