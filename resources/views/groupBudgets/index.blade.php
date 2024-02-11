@@ -47,7 +47,11 @@
 
             <div class="row py-4">
                 @if ($budgets->isEmpty())
-                    <p>No group budgets available.</p>
+                    <p>No group budgets available
+                        <a href="/group/budget/create" class="link-success">
+                            create budget
+                        </a>
+                    </p>
                 @else
                     @foreach ($budgets as $budget)
                         <div class="col-xl-3 col-md-6 ">
@@ -84,7 +88,11 @@
                         </div>
                     @endforeach
                 @endif
-                {!! $budgets->links() !!}
+
+                {{-- pagination --}}
+                @if ($budgets->isNotEmpty())
+                    {!! $budgets->links() !!}
+                @endif
             </div>
         </div>
 
