@@ -49,10 +49,6 @@
                                 ₹ {{ $formattedGroupBudgetAmount ?? 'N/A' }}
                             </div>
                         </div>
-                        {{-- <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white text-decoration-none" href="/d">View Details</a>
-                            <div class="small text-white "><i class="fas fa-angle-right"></i></div>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
@@ -66,10 +62,6 @@
                             </div>
                         </div>
 
-                        {{-- <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white text-decoration-none" href="/b">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
@@ -82,10 +74,6 @@
                                 ₹ {{ $formattedTotalIncomeTransactionAmount }}
                             </div>
                         </div>
-                        {{-- <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white text-decoration-none" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
@@ -98,13 +86,17 @@
                                 ₹ {{ $formattedTotalExpenseTransactionAmount }}
                             </div>
                         </div>
-                        {{-- <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white text-decoration-none" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
+
+            <a href="/group/budget/{{ $budgetId }}/transaction/create" class="btn btn-primary mb-3 *:"
+                data-bs-toggle="tooltip" data-bs-title="Add transaction">
+                <span>
+                    <i class="fa fa-plus-circle  me-2" aria-hidden="true"></i>
+                </span>
+                Add transactions
+            </a>
 
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -162,21 +154,11 @@
                         @endforelse
                     </tbody>
                 </table>
-
-                {!! $transactions->links() !!}
             </div>
 
-            {{-- add budget transcations --}}
-            <div class="position-relative">
-                <div class="position-absolute top-0 end-0">
-                    <a href="/group/budget/{{ $budgetId }}/transaction/create"
-                        class="fw-semibold text-primary text-decoration-underline" data-bs-toggle="tooltip"
-                        data-bs-title="Add transaction">
-                        <span>
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </div>
+            {{-- pagination --}}
+            <div>
+                {!! $transactions->links() !!}
             </div>
         </div>
 
@@ -197,8 +179,3 @@
         </script>
     </main>
 @endsection
-
-{{--
-    code things that will reflect your presonality
-
-    --}}
