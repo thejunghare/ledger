@@ -95,18 +95,12 @@
                     </div>
                     {{-- paymode --}}
                     <div class="col">
-                        {{--  <select id="paymentModeOptions" class="form-select" aria-label="Default select example"
-                            name="paymode" required>
+                        <select id="paymode-options" class="form-select" aria-label="Default select example" name="paymode"
+                            required>
                             <option value="" disabled selected>Select payment mode</option>
-                               @foreach ($paymodes as $paymode)
-                                <option value="{{ $paymode->id }}">{{ $paymode->paymode_type }}</option>
-                            @endforeach
-                        </select> --}}
-
-                        <select class="form-select" aria-label="Default select example" name="paymode">
-                            <option selected>Choose payment mode</option>
                         </select>
                     </div>
+
                 </div>
 
                 <button type="submit" class="btn btn-primary">Save</button>
@@ -115,18 +109,27 @@
 
         <script>
             $(document).ready(function() {
+                var selectElement = $('#paymode-options');
+
                 $.ajax({
-                    url: '{{ route('getPaymentModeOptions') }}',
-                    type: 'GET',
-                    dataType: 'json',
+                    url: '/paymode-options',
+                    method: 'GET',
                     success: function(data) {
-                        $.each(data, fuction(key, value) {
-                            $('#paymentModeOptions').append('<option value="' + value.id + '">' +
-                                value.paymode_type + '</option>')
+                        selectElement.empty();
+                        selectElement.append(
+                            '<option value="" disabled selected>Select payment mode</option>');
+
+                        $.each(data, function(index, option) {
+                            selectElement.append('<option value="' + option.id + '">' + option
+                                .paymode_type + '</option>');
                         });
+                    },
+                    error: function(error) {
+                        console.error('Error fetching payment options:', error);
                     }
-                })
+                });
             });
         </script>
+
     </main>
 @endsection

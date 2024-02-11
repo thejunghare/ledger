@@ -166,6 +166,6 @@ Route::delete('/group/budget/transaction/{groupBudgetTransaction}', [GroupBudget
 
 // Route::resource('products', GroupBudgetController::class);
 
-// fetch the default category and payment modes
-Route::get('/get-paymode-option', [PaymentModeController::class, 'getOptions'])->name('getPaymentModeOptions');
+// fetch payment modes
+Route::get('/paymode-options', [PaymentModeController::class, 'getOptions'])->name('paymode-options');
 

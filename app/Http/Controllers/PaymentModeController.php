@@ -12,9 +12,8 @@ class PaymentModeController extends Controller
 
     public function getOptions(Request $request)
     {
+        // $data = Paymode::with(['id', 'paymode_type'])->get();
         $data = Paymode::select('id', 'paymode_type')->get();
-        // $data = Paymode::all();
-
         return response()->json($data);
     }
 }
