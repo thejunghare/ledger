@@ -76,15 +76,15 @@
                 {{-- budget id to add the transaction --}}
                 <div class="col">
                     {{-- i want the id here --}}
-                    {{--  <input value="{{ $budgetId }}" hidden type="text" placeholder="Selected budget"
-                        class="form-control" id="date" name="for_budget_id" required> --}}
+                     <input value="{{ $budgetId }}" hidden type="text" placeholder="Selected budget"
+                        class="form-control" value="{{ old($budgetId) ?? $transactionDetails->for_budget_id}}" id="date" name="for_budget_id" required>
                 </div>
 
                 <div class="row g-3 mb-3">
                     {{-- date of transaction --}}
                     <div class="col">
                         <input type="date" class="form-control @error('date') is-invalid @enderror" id="date"
-                            name="created_at" value="{{ old('date') ?? $transactionDetails->date }}" autocomplete="date"
+                            name="date" value="{{ old('date') ?? $transactionDetails->date }}" autocomplete="date"
                             autofocus>
                         @error('date')
                             <span role="alert" class="invalid-feedback">

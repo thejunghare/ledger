@@ -131,7 +131,7 @@
                                 <td>{{ $transaction->paymode_type }}</td>
                                 <td class="d-flex align-items-center justify-content-start">
                                     {{-- edit transaction --}}
-                                    <form action="/g/b/t/{{ $transaction->id }}/edit" method="GET">
+                                    <form action="/g/b/{{ $budgetId }}/t/{{ $transaction->id }}/edit" method="GET">
                                         @csrf
                                         <button type="submit"
                                             class="btn fw-semibold bg-white btn-outline-light border-none text-success text-decoration-underline mx-2">

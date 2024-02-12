@@ -116,9 +116,8 @@ class GroupBudgetDashboardController extends Controller
         return redirect()->route('GroupBudget.show', $groupBudgetId)->with('success', 'Transaction added');
     }
 
-    public function edit($id)
+    public function edit($id, $budgetId)
     {
-
         $userID = Auth::id();
 
         // get the transaction details
@@ -131,33 +130,44 @@ class GroupBudgetDashboardController extends Controller
             return response()->json(['ID not found'], 404);
         }
 
-        return view('groupBudgets.transaction.edit', compact('transactionDetails'));
+        // Pass both variables to the view using compact
+        return view('groupBudgets.transaction.edit', compact('transactionDetails', 'budgetId'));
     }
+
 
     public function update(Request $request, $id)
     {
-
         $request->validate([
             'transaction_type_id' => 'required',
             'for_budget_id' => 'required',
             'amount' => 'required|numeric|min:1',
+            'date' => 'required',
             'category_id' => 'required',
             'paymode_id' => 'required',
         ]);
 
         $transaction = GroupBudgetTransaction::find($id);
+
+        if (!$transaction) {
+            return redirect()->back()->with('error', 'Transaction not found!');
+        }
+
         $groupBudgetId = $transaction->for_budget_id;
 
-        $updated = GroupBudgetTransaction::where('id', $id)->update($request->only(['transaction_type_id', 'for_budget_id', 'amount', 'category_id', 'paymode_id']));
+        $updated = $transaction->update($request->only([
+            'transaction_type_id',
+            'for_budget_id',
+            'amount',
+            'date',
+            'category_id',
+            'paymode_id'
+        ]));
 
-        if ($updated) {
-            return redirect()->route('groupBudget.show', $groupBudgetId)
-                ->with('success', 'Transaction updated!');
-        } else {
-            return redirect()->route('groupBudget.show', $groupBudgetId)
-                ->with('error', 'Cant update transaction!');
-        }
+        $message = $updated ? 'Transaction updated!' : 'Failed to update transaction!';
+
+        return redirect()->route('groupBudget.show', $groupBudgetId)->with($updated ? 'success' : 'error', $message);
     }
+
 
     // delete the transactions from budget
     public function destroy($id)
