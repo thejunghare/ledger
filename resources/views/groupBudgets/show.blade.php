@@ -90,7 +90,7 @@
                 </div>
             </div>
 
-            <a href="/g/b/{{ $budgetId }}/transaction/create" class="btn btn-primary mb-3 *:" data-bs-toggle="tooltip"
+            <a href="/g/b/{{ $budgetId }}/t/create" class="btn btn-primary mb-3 *:" data-bs-toggle="tooltip"
                 data-bs-title="Add transaction">
                 <span>
                     <i class="fa fa-plus-circle  me-2" aria-hidden="true"></i>

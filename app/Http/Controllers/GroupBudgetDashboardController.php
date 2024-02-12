@@ -86,6 +86,10 @@ class GroupBudgetDashboardController extends Controller
         return view('groupBudgets.show', compact('budgetId', 'groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
     }
 
+    public function create($budgetId){
+        return view('groupBudgets.transaction.create', ['budgetId' => $budgetId]);
+    }
+
     // add transaction for group budget
     public function store(Request $request): RedirectResponse
     {

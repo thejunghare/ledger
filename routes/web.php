@@ -157,24 +157,19 @@ Route::prefix('g/b')->group(function () {
 
 Route::get('g/b/{groupTransaction}', [GroupBudgetDashboardController::class, 'show'])->name('GroupBudget.show');
 
-// Dashboard
-Route::get('/group/budget/{budgetId}/transaction/create', function ($budgetId) {
-    return view('groupBudgets.transaction.create', ['budgetId' => $budgetId]);
-});
-
 /*
 |--------------------------------------------------------------------------
 | Group budget transactions
 |--------------------------------------------------------------------------
 */
 
+Route::get('/g/b/{budgetId}/t/create', [GroupBudgetDashboardController::class, 'create'])->name('groupBudgetTransaction.create');
 Route::resource('/g/b/t', GroupBudgetDashboardController::class)->names([
     'store' => 'groupBudgetTransaction.store',
     'edit' => 'groupBudgetTransaction.edit',
     'update' => 'groupBudgetTransaction.update',
     'destroy' => 'groupBudgetTransaction.destroy',
 ]);
-
 
 /*
 |--------------------------------------------------------------------------
