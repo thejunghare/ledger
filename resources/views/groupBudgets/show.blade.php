@@ -112,10 +112,10 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        @php
-                            $serialNumber = 1;
-                        @endphp
                         @forelse ($transactions as $transaction)
+                            @php
+                                $serialNumber = 1;
+                            @endphp
                             <tr>
                                 <th scope="row"> {{ $serialNumber++ }}</th>
                                 <td>
@@ -148,7 +148,6 @@
                                     </form>
                                 </td>
                             </tr>
-
                         @empty
                             <p>No transactions available.</p>
                         @endforelse
