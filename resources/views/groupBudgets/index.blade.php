@@ -31,7 +31,7 @@
                     <h1 class="mt-4">Group Budget
                 </div>
                 <div>
-                    <a href="/group/budget/create" class="fs-2">
+                    <a href="/g/b/create" class="fs-2">
                         <i class="fas fa-plus text-primary"></i>
                     </a>
                 </div>
@@ -48,7 +48,7 @@
             <div class="row py-4">
                 @if ($budgets->isEmpty())
                     <p>No group budgets available
-                        <a href="/group/budget/create" class="link-success">
+                        <a href="/g/b/create" class="link-success">
                             create budget
                         </a>
                     </p>
@@ -68,15 +68,19 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-decoration-none "
-                                        href="/group/budget/{{ $budget->id }}">Details</a>
+                                    {{-- see detailed budget --}}
+                                    <a class="small text-decoration-none " href="/g/b/{{ $budget->id }}">Details</a>
                                     <div class="small d-flex align-items-center">
-                                        <form action="/group/budget/{{ $budget->id }}/edit" method="get">
+                                        {{-- edit --}}
+                                        <form action="{{ route('groupBudget.edit', ['groupBudget' => $budget->id]) }}"
+                                            method="get">
                                             @csrf
                                             <button type="submit" class="btn"><i
                                                     class="fas fa-pencil text-success"></i></button>
                                         </form>
-                                        <form action="/group/budget/{{ $budget->id }}" method="post">
+                                        {{-- destroy --}}
+                                        <form action="{{ route('groupBudget.destroy', ['groupBudget' => $budget->id]) }}"
+                                            method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn"><i

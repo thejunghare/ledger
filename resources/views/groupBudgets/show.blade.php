@@ -90,8 +90,8 @@
                 </div>
             </div>
 
-            <a href="/group/budget/{{ $budgetId }}/transaction/create" class="btn btn-primary mb-3 *:"
-                data-bs-toggle="tooltip" data-bs-title="Add transaction">
+            <a href="/g/b/{{ $budgetId }}/transaction/create" class="btn btn-primary mb-3 *:" data-bs-toggle="tooltip"
+                data-bs-title="Add transaction">
                 <span>
                     <i class="fa fa-plus-circle  me-2" aria-hidden="true"></i>
                 </span>
@@ -130,14 +130,14 @@
                                 <td> {{ $transaction->category_name }}</td>
                                 <td>{{ $transaction->paymode_type }}</td>
                                 <td class="d-flex align-items-center justify-content-start">
-                                    <a href="/group/budget/transaction/{groupBudgetTransaction}/edit"
+                                    <a href="/g/b/t/{groupBudgetTransaction}/edit"
                                         class="fw-semibold text-primary text-decoration-underline">
                                         <span>
                                             <i class="fa fa-pencil-square" aria-hidden="true"></i>
                                         </span>
                                     </a>
 
-                                    <form action="/group/budget/transaction/{{ $transaction->id }}" method="POST">
+                                    <form action="/g/b/t/{{ $transaction->id }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"

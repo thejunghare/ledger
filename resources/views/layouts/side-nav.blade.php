@@ -35,7 +35,7 @@
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="/b">Daily budget</a>
-                        <a class="nav-link" href="/group/budgets">Group Budget</a>
+                        <a class="nav-link" href="/g/b">Group Budget</a>
                     </nav>
                 </div>
 

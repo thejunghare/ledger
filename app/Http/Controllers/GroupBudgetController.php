@@ -23,7 +23,10 @@ class GroupBudgetController extends Controller
         return view("groupBudgets.index", compact("budgets"));
     }
 
-
+    public function create(){
+        return view('groupBudgets.create');
+    }
+    
     public function store(Request $request)
     {
 
@@ -47,7 +50,7 @@ class GroupBudgetController extends Controller
         $data = $request->all();
 
         if ($user->groupBudgets()->where('budget_name', $data['budget_name'])->exists()) {
-            return redirect('/g')->with('warning', 'Budget name exists!');
+            return redirect('/g/b')->with('warning', 'Budget name exists!');
         }
 
         $newBudget = $request->user()->groupBudgets()->create($data);
@@ -56,11 +59,18 @@ class GroupBudgetController extends Controller
             ->with('success', 'Budget created successfully.');
     }
 
-    public function show($id)
+    /* public function show($id)
     {
         $groupBudgetID = groupBudget::find($id);
 
         return view('groupBudgets.show', compact('groupBudgetID', 'budgetAmount'));
+    } */
+
+    public function show($id)
+    {
+        $groupBudgetID = groupBudget::find($id);
+
+        return view('groupBudgets.show', compact('groupBudgetID'));
     }
 
     public function edit($id)
@@ -94,11 +104,11 @@ class GroupBudgetController extends Controller
         $updated = groupBudget::where('id', $id)->update($request->only(['budget_name', 'budget_amount']));
 
         if ($updated) {
-            return redirect('group/budgets/')->with([
+            return redirect('g/b')->with([
                 'success' => 'Budget was updated',
             ]);
         } else {
-            return redirect('group/budgets/')->with([
+            return redirect('g/b')->with([
                 'error' => `Can't update budget, try again!`
             ]);
         }
@@ -110,7 +120,7 @@ class GroupBudgetController extends Controller
         $groupBudget = groupBudget::find($id);
 
         if (!$groupBudget) {
-            return redirect('/group/budgets')->with([
+            return redirect('/g/b')->with([
                 'error' => 'Budget not found!'
             ]);
         }
@@ -122,7 +132,7 @@ class GroupBudgetController extends Controller
         $groupBudget->delete();
 
         // redirect on delete with flash message
-        return redirect('/group/budgets')->with([
+        return redirect('/g/b')->with([
             'success' => 'Budget destroyed!'
         ]);
     }
