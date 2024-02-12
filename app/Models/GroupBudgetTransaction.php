@@ -12,6 +12,7 @@ class GroupBudgetTransaction extends Model
         'transaction_type_id',
         'for_budget_id',
         'amount',
+        'date',
         'category_id',
         'paymode_id',
     ];

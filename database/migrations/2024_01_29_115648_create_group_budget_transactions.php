@@ -17,6 +17,8 @@ return new class extends Migration
                 $table->unsignedBigInteger('transaction_type_id'); // Foreign key for default_category_types
                 $table->unsignedBigInteger('for_budget_id'); // Foreign key for group_budgets
                 $table->unsignedBigInteger('amount');
+                $table->dateTime('date');
+
                 $table->unsignedBigInteger('category_id'); // Foreign key for default_categories
                 $table->unsignedBigInteger('paymode_id'); // Foreign key for pay_mode
                 $table->timestamps();
