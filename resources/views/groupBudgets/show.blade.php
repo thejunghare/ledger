@@ -130,19 +130,20 @@
                                 <td> {{ $transaction->category_name }}</td>
                                 <td>{{ $transaction->paymode_type }}</td>
                                 <td class="d-flex align-items-center justify-content-start">
-                                    <a href="/g/b/t/{groupBudgetTransaction}/edit"
-                                        class="fw-semibold text-primary text-decoration-underline">
-                                        <span>
+                                    {{-- edit transaction --}}
+                                    <form action="/g/b/t/{{ $transaction->id }}/edit" method="GET">
+                                        @csrf
+                                        <button type="submit"
+                                            class="btn fw-semibold bg-white btn-outline-light border-none text-success text-decoration-underline mx-2">
                                             <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                                        </span>
-                                    </a>
-
+                                        </button>
+                                    </form>
+                                    {{-- delete transaction --}}
                                     <form action="/g/b/t/{{ $transaction->id }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="btn fw-semibold bg-white btn-outline-light border-none text-danger text-decoration-underline mx-2"
-                                            wire:click="delete">
+                                            class="btn fw-semibold bg-white btn-outline-light border-none text-danger text-decoration-underline mx-2">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                                     </form>

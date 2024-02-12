@@ -9,14 +9,16 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="/group/budget/{{ $budgetId }}">Group Budget</a></li>
+                    {{-- <li class="breadcrumb-item"><a href="/group/budget/{{ $budgetId }}">Group Budget</a></li>   --}}
                     <li class="breadcrumb-item active" aria-current="page">Add transaction</li>
                 </ol>
             </nav>
 
             <!-- form -->
-            <form class="" method="POST" action="{{ route('groupBudgetTransaction.store') }}">
+            <form class="" method="POST"
+                action="{{ route('groupBudgetTransaction.update', [$transactionDetails->id]) }}">
                 @csrf
+                @method('PATCH')
                 {{-- @dd($errors->all()); --}}
 
                 {{-- type of transaction --}}
@@ -74,15 +76,16 @@
                 {{-- budget id to add the transaction --}}
                 <div class="col">
                     {{-- i want the id here --}}
-                    <input value="{{ $budgetId }}" hidden type="text" placeholder="Selected budget"
-                        class="form-control" id="date" name="for_budget_id" required>
+                    {{--  <input value="{{ $budgetId }}" hidden type="text" placeholder="Selected budget"
+                        class="form-control" id="date" name="for_budget_id" required> --}}
                 </div>
 
                 <div class="row g-3 mb-3">
                     {{-- date of transaction --}}
                     <div class="col">
                         <input type="date" class="form-control @error('date') is-invalid @enderror" id="date"
-                            name="created_at" value="{{ old('date') }}" autocomplete="date" autofocus>
+                            name="created_at" value="{{ old('date') ?? $transactionDetails->date }}" autocomplete="date"
+                            autofocus>
                         @error('date')
                             <span role="alert" class="invalid-feedback">
                                 <strong>
@@ -96,7 +99,8 @@
                     <div class="col input-group">
                         <span class="input-group-text">₹</span>
                         <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount"
-                            name="amount" placeholder="50" value="{{ old('amount') }}" autofocus autocomplete="amount">
+                            name="amount" placeholder="50" value="{{ old('amount') ?? $transactionDetails->amount }}"
+                            autofocus autocomplete="amount">
                         @error('amount')
                             <span role="alert" class="invalid-feedback">
                                 <strong>
@@ -112,7 +116,8 @@
                     <div class="col">
                         <select id="category-options" class="form-control @error('category-options') is-invalid @enderror"
                             aria-label="Default select example" name="category_id" required autofocus
-                            value="{{ old('category_id') }}" autocomplete="category-options">
+                            value="{{ old('category_id') ?? $transactionDetails->category_id }}"
+                            autocomplete="category-options">
                             <option value="" disabled selected>Select category</option>
                         </select>
                         @error('category-options')
@@ -127,7 +132,8 @@
                     <div class="col">
                         <select id="paymode-options" class="form-control @error('paymode-options') is-invalid @enderror"
                             aria-label="Default select example" name="paymode_id" required autofocus
-                            value="{{ old('paymode_id') }}" autocomplete="paymode-options">
+                            value="{{ old('paymode_id') ?? $transactionDetails->paymode_id }}"
+                            autocomplete="paymode-options">
                             <option value="" disabled selected>Select payment mode</option>
                         </select>
                         @error('paymode-options')

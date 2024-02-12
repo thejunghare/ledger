@@ -86,7 +86,8 @@ class GroupBudgetDashboardController extends Controller
         return view('groupBudgets.show', compact('budgetId', 'groupBudgetName', 'formattedGroupBudgetAmount', 'transactionsCountMadeForBudget', 'formattedTotalExpenseTransactionAmount', 'formattedTotalIncomeTransactionAmount', 'formattedTotalBalanceAmount', 'transactions'));
     }
 
-    public function create($budgetId){
+    public function create($budgetId)
+    {
         return view('groupBudgets.transaction.create', ['budgetId' => $budgetId]);
     }
 
@@ -112,6 +113,49 @@ class GroupBudgetDashboardController extends Controller
         $newTransaction = $request->user()->GroupBudgetTransactions()->create($data);
 
         return redirect()->route('GroupBudget.show', $groupBudgetId)->with('success', 'Transaction added');
+    }
+
+    public function edit($id)
+    {
+
+        $userID = Auth::id();
+
+        // get the transaction details
+        $transactionDetails = GroupBudgetTransaction::
+            where('id', $id)
+            ->where('user_id', $userID)
+            ->first();
+
+        if (!$transactionDetails) {
+            return response()->json(['ID not found'], 404);
+        }
+
+        return view('groupBudgets.transaction.edit', compact('transactionDetails'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $request->validate([
+            'transaction_type_id' => 'required',
+            'for_budget_id' => 'required',
+            'amount' => 'required|numeric|min:1',
+            'category_id' => 'required',
+            'paymode_id' => 'required',
+        ]);
+
+        $transaction = GroupBudgetTransaction::find($id);
+        $groupBudgetId = $transaction->for_budget_id;
+
+        $updated = GroupBudgetTransaction::where('id', $id)->update($request->only(['transaction_type_id', 'for_budget_id', 'amount', 'category_id', 'paymode_id']));
+
+        if ($updated) {
+            return redirect()->route('groupBudget.show', $groupBudgetId)
+                ->with('success', 'Transaction updated!');
+        } else {
+            return redirect()->route('groupBudget.show', $groupBudgetId)
+                ->with('error', 'Cant update transaction!');
+        }
     }
 
     // delete the transactions from budget

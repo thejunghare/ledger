@@ -23,10 +23,11 @@ class GroupBudgetController extends Controller
         return view("groupBudgets.index", compact("budgets"));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('groupBudgets.create');
     }
-    
+
     public function store(Request $request)
     {
 
