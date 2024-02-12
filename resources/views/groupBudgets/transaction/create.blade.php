@@ -82,7 +82,7 @@
                     {{-- date of transaction --}}
                     <div class="col">
                         <input type="date" class="form-control @error('date') is-invalid @enderror" id="date"
-                            name="created_at" value="{{ old('date') }}" autocomplete="date" autofocus>
+                            name="date" value="{{ old('date') }}" autocomplete="date" autofocus>
                         @error('date')
                             <span role="alert" class="invalid-feedback">
                                 <strong>

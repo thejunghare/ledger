@@ -100,6 +100,7 @@ class GroupBudgetDashboardController extends Controller
             'transaction_type_id' => 'required',
             'for_budget_id' => 'required',
             'amount' => 'required|numeric|min:1',
+            'date' => 'required',
             'category_id' => 'required',
             'paymode_id' => 'required',
         ]);
