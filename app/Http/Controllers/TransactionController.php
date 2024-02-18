@@ -56,7 +56,6 @@ class TransactionController extends Controller
         ]);
     }
 
-
     public function show($transaction)
     {
         $transaction = auth()->user()->transactions()->find($transaction);
@@ -80,42 +79,40 @@ class TransactionController extends Controller
         return view('transactions.see', compact('transaction', 'transactionDetails'));
     }
 
-
-
     public function edit($transaction)
     {
-        $getTransaction = Transaction::query()
-            ->where('id', $transaction)
-            ->where('user_id', Auth::Id())
+        $getTransactionDetails = Transaction::query()
+            ->where([
+                'id' => $transaction,
+                'user_id' => Auth::Id(),
+            ])
             ->first();
 
-        // dd($getId, Auth::user());
-
-
-        if (!$getTransaction) {
-            return response()->json(['ID not found'], 404);
+        if (!$getTransactionDetails) {
+            return response()->json(['message' => 'Transaction not found'], 404);
         }
 
-        //  return response()->json($getTransaction);
-        return view('transactions.edit', compact('getTransaction'));
+        return view('transactions.edit', compact('getTransactionDetails'));
     }
-
 
     public function update(Request $request, $id)
     {
-        $item = Transaction::find($id);
-        $item->type = $request->input('type');
-        $item->date = $request->input('date');
-        $item->amount = $request->input('amount');
-        $item->category = $request->input('category');
-        $item->paymode = $request->input('paymode');
+        $validatedData = $request->validate([
+            'transaction_type_id' => 'required|integer',
+            'date' => 'required|date',
+            'amount' => 'required|numeric|min:1',
+            'category_id' => 'required|integer',
+            'paymode_id' => 'required|integer',
+        ]);
 
-        $item->save();
+        $item = Transaction::find($id);
+
+        $item->update($validatedData);
+
         return redirect('/t')->with([
             'success' => 'Transaction updated successfully!'
         ]);
     }
-
 
     public function destroy($transactions)
     {
