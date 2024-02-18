@@ -52,12 +52,12 @@
                 @else
                     @foreach ($transactions as $transaction)
                         <div class="col-xl-3 col-md-6 ">
-                            <div class="card mb-4">
+                            <div
+                                class="card {{ $transaction->category_type == 'Income' ? 'text-bg-success' : 'text-bg-danger' }} mb-4">
                                 <div class="card-body d-flex justify-content-between">
                                     <div>{{ $transaction->date }}</div>
                                     <div>
-                                        <span
-                                            class="">
+                                        <span>
                                             @php
                                                 $formattedAmount = number_format($transaction->amount, 2);
                                             @endphp
@@ -66,18 +66,19 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-decoration-none " href="/t/{{ $transaction->id }}">Details</a>
+                                    <a class="small text-decoration-underline text-white"
+                                        href="/t/{{ $transaction->id }}">Details</a>
                                     <div class="small d-flex align-items-center">
                                         <form action="/t/{{ $transaction->id }}/edit" method="get">
                                             @csrf
                                             <button type="submit" class="btn"><i
-                                                    class="fas fa-pencil text-success"></i></button>
+                                                    class="fas fa-pencil text-white"></i></button>
                                         </form>
                                         <form action="/t/{{ $transaction->id }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn"><i
-                                                    class="fas fa-trash text-danger"></i></button>
+                                                    class="fas fa-trash text-white"></i></button>
                                         </form>
                                     </div>
                                 </div>

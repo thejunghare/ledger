@@ -22,20 +22,21 @@ class TransactionController extends Controller
 
         if ($user) {
             $currentDate = now()->toDateString();
-            $transactions = $user->transactions()->where('date', $currentDate)->latest()->get();
-            $transactionDetails = Transaction::select(
+
+            $transactions = Transaction::select(
                 'transactions.*',
                 'default_category_types.category_type',
             )
                 ->join('default_category_types', 'transactions.transaction_type_id', '=', 'default_category_types.id')
                 ->where('transactions.user_id', $user->id)
-                ->first();
+                ->where('date', $currentDate)
+                ->latest()
+                ->get();
         } else {
             $transactions = [];
-            $transactionDetails = null;
         }
 
-        return view("transactions.show", compact("transactions", 'transactionDetails'));
+        return view("transactions.show", compact("transactions"));
     }
 
     public function store(Request $request): RedirectResponse
