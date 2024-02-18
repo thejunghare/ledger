@@ -39,6 +39,13 @@
                 <li class="breadcrumb-item active">Features</li>
             </ol>
 
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Transactions</li>
+                </ol>
+            </nav>
+
             <div class="row py-4">
                 @if ($transactions->isEmpty())
                     <p>No transactions available.</p>
@@ -50,9 +57,9 @@
                                     <div>{{ $transaction->date }}</div>
                                     <div>
                                         <span
-                                            class="{{ $transaction->type === 'Expense' ? 'text-danger' : 'text-success' }}">
+                                            class="{{ $transactionDetails->category_type == 'Income' ? 'text-success' : 'text-danger' }}">
                                             @php
-                                                $formattedAmount = number_format($transaction->amount);
+                                                $formattedAmount = number_format($transaction->amount, 2);
                                             @endphp
                                             ₹ {{ $formattedAmount }}
                                         </span>

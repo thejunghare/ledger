@@ -18,10 +18,23 @@ class TransactionController extends Controller
 
     public function index()
     {
-        $user = Auth::user(); // logged in user
-        $transactions = $user ? $user->transactions()->get() : [];
+        $user = Auth::user();
 
-        return view("transactions.show", compact("transactions"));
+        if ($user) {
+            $transactions = $user->transactions()->get();
+            $transactionDetails = Transaction::select(
+                'transactions.*',
+                'default_category_types.category_type',
+            )
+                ->join('default_category_types', 'transactions.transaction_type_id', '=', 'default_category_types.id')
+                ->where('transactions.user_id', $user->id)
+                ->first();
+        } else {
+            $transactions = [];
+            $transactionDetails = null;
+        }
+
+        return view("transactions.show", compact("transactions", 'transactionDetails'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -45,27 +58,27 @@ class TransactionController extends Controller
 
 
     public function show($transaction)
-{
-    $transaction = auth()->user()->transactions()->find($transaction);
+    {
+        $transaction = auth()->user()->transactions()->find($transaction);
 
-    if (!$transaction) {
-        return response()->json(['ID not found'], 404);
+        if (!$transaction) {
+            return response()->json(['ID not found'], 404);
+        }
+
+        $transactionDetails = Transaction::select(
+            'transactions.*',
+            'pay_mode.paymode_type',
+            'default_categories.category_name',
+            'default_category_types.category_type',
+        )
+            ->join('default_categories', 'transactions.category_id', '=', 'default_categories.id')
+            ->join('default_category_types', 'transactions.transaction_type_id', '=', 'default_category_types.id')
+            ->join('pay_mode', 'transactions.paymode_id', '=', 'pay_mode.id')
+            ->where('transactions.id', $transaction->id)
+            ->first();
+
+        return view('transactions.see', compact('transaction', 'transactionDetails'));
     }
-
-    $transactionDetails = Transaction::select(
-        'transactions.*',
-        'pay_mode.paymode_type',
-        'default_categories.category_name',
-        'default_category_types.category_type',
-    )
-        ->join('default_categories', 'transactions.category_id', '=', 'default_categories.id')
-        ->join('default_category_types', 'transactions.transaction_type_id', '=', 'default_category_types.id')
-        ->join('pay_mode', 'transactions.paymode_id', '=', 'pay_mode.id')
-        ->where('transactions.id', $transaction->id)
-        ->first();
-
-    return view('transactions.see', compact('transaction', 'transactionDetails'));
-}
 
 
 
