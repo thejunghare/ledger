@@ -26,7 +26,7 @@
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between align-items-end">
                 <div>
-                    <h1 class="mt-4">My Transactions's
+                    <h1 class="mt-4">Your daily transactions
                 </div>
                 <div>
                     <a href="/t/create" class="fs-2">
@@ -35,9 +35,9 @@
                 </div>
             </div>
 
-            <ol class="breadcrumb mb-4">
+            {{--   <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Features</li>
-            </ol>
+            </ol> --}}
 
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">

@@ -21,7 +21,8 @@ class TransactionController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            $transactions = $user->transactions()->get();
+            $currentDate = now()->toDateString();
+            $transactions = $user->transactions()->where('date', $currentDate)->get();
             $transactionDetails = Transaction::select(
                 'transactions.*',
                 'default_category_types.category_type',
