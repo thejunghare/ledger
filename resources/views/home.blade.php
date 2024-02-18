@@ -116,10 +116,10 @@
                                     <tr>
                                         <td>{{ $serialNumber }}</td>
                                         <td>
-                                            @if ($transactionDetails->category_type == 'Income')
-                                                <p class="text-success mb-0">{{ $transactionDetails->category_type }}</p>
+                                            @if ($transaction->category_type == 'Income')
+                                                <p class="text-success mb-0">{{ $transaction->category_type }}</p>
                                             @else
-                                                <p class="text-danger mb-0">{{ $transactionDetails->category_type }}</p>
+                                                <p class="text-danger mb-0">{{ $transaction->category_type }}</p>
                                             @endif
                                         </td>
                                         <td>{{ $transaction->date }}</td>
@@ -129,8 +129,8 @@
                                             @endphp
                                             ₹{{ $formattedAmount }}
                                         </td>
-                                        <td>{{ $transactionDetails->category_name }}</td>
-                                        <td>{{ $transactionDetails->paymode_type }}</td>
+                                        <td>{{ $transaction->category_name }}</td>
+                                        <td>{{ $transaction->paymode_type }}</td>
                                     </tr>
                                     @php
                                         $serialNumber++;

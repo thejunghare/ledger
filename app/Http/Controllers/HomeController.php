@@ -45,11 +45,11 @@ class HomeController extends Controller
         // get the transaction count
         $transactionCount = $user->transactions->count();
 
-        $transactions = $user->transactions->where('date', $currentDate);
+        // $transactions = $user->transactions->where('date', $currentDate);
 
         $user_id = Auth::id();
 
-        $transactionDetails = Transaction::select(
+        $transactions = Transaction::select(
             'transactions.*',
             'pay_mode.paymode_type',
             'default_categories.category_name',
@@ -58,9 +58,9 @@ class HomeController extends Controller
             ->join('default_categories', 'transactions.category_id', '=', 'default_categories.id')
             ->join('default_category_types', 'transactions.transaction_type_id', '=', 'default_category_types.id')
             ->join('pay_mode', 'transactions.paymode_id', '=', 'pay_mode.id')
-            ->where('transactions.user_id', $user_id)
+            ->where('transactions.date', $currentDate)
+            ->get();
 
-            ->first();
 
         $userId = Auth::id();
 
@@ -109,7 +109,7 @@ class HomeController extends Controller
         $amount = $totalIncomeAmount;
         $formattedIncomeAmount = number_format($amount, 2);
 
-        return view('home', compact('transactionDetails', 'formattedTotalBudgetAmount', 'firstLetters', 'transactionCount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount', 'formattedBalance'));
+        return view('home', compact('formattedTotalBudgetAmount', 'firstLetters', 'transactionCount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount', 'formattedBalance'));
     }
 }
 
