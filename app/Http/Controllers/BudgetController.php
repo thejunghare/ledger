@@ -21,7 +21,8 @@ class BudgetController extends Controller
     public function index()
     {
         $user = Auth::user(); // logged in user
-        $budgets = $user ? $user->budgets()->get() : [];
+        $currentDate = now()->toDateString();
+        $budgets = $user ? $user->budgets()->where('date', $currentDate)->latest()->get() : [];
         return view("budgets.show", compact("budgets"));
     }
 
