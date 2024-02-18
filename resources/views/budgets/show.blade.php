@@ -40,6 +40,13 @@
                 <li class="breadcrumb-item active">Features</li>
             </ol>
 
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Budgets    </li>
+                </ol>
+              </nav>
+
             <div class="row py-4">
                 @if ($budgets->isEmpty())
                     <p>No budgets available.</p>
