@@ -48,7 +48,14 @@
                 <a class="nav-link" href="/p">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-money-check-dollar"></i></div>
                     Payments
-                </a> <!--About Page -->
+                </a>
+                <!--issues -->
+                <a class="nav-link" href="/a">
+                    <div class="sb-nav-link-icon"><i class="fa fa-bug" aria-hidden="true"></i>
+                    </div>
+                    Report bugs
+                </a>
+                <!--About Page -->
                 <a class="nav-link" href="/a">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-info"></i></div>
                     About App
