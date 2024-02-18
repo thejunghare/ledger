@@ -8,7 +8,7 @@
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <h1 class="display-1"> {{ config('app.name') }}</h1>
                 <p class="led">
-                    version: <abbr title="app version"><small>v 1.1.0 (Early bird)</small></abbr>
+                    version: <abbr title="app version"><small>v 1.0.2 (Early bird)</small></abbr>
                 </p>
             </div>
 
