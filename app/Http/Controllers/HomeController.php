@@ -62,7 +62,6 @@ class HomeController extends Controller
 
             ->first();
 
-        // get total
         $userId = Auth::id();
 
 

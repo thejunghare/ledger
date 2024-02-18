@@ -5,7 +5,7 @@
         <div class="container-fluid px-4">
             <h1 class="mt-4">
 
-              Today's Financial Overview</h1>
+                Today's Financial Overview</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
@@ -116,12 +116,11 @@
                                     <tr>
                                         <td>{{ $serialNumber }}</td>
                                         <td>
-                                           {{--  @if ($transactionDetails->category_type == 'Expense')
-                                                <p class="text-danger mb-0">{{ $transactionDetails->category_type }}</p>
-                                            @else
+                                            @if ($transactionDetails->category_type == 'Income')
                                                 <p class="text-success mb-0">{{ $transactionDetails->category_type }}</p>
-                                            @endif --}}
-                                            {{ $transactionDetails->category_type }}
+                                            @else
+                                                <p class="text-danger mb-0">{{ $transactionDetails->category_type }}</p>
+                                            @endif
                                         </td>
                                         <td>{{ $transaction->date }}</td>
                                         <td>
