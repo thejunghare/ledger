@@ -127,7 +127,7 @@
                                             @php
                                                 $formattedAmount = number_format($transaction->amount, 2);
                                             @endphp
-                                            ₹ {{ $formattedAmount }}
+                                            ₹{{ $formattedAmount }}
                                         </td>
                                         <td>{{ $transactionDetails->category_name }}</td>
                                         <td>{{ $transactionDetails->paymode_type }}</td>

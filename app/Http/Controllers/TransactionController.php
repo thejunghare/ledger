@@ -22,7 +22,7 @@ class TransactionController extends Controller
 
         if ($user) {
             $currentDate = now()->toDateString();
-            $transactions = $user->transactions()->where('date', $currentDate)->get();
+            $transactions = $user->transactions()->where('date', $currentDate)->latest()->get();
             $transactionDetails = Transaction::select(
                 'transactions.*',
                 'default_category_types.category_type',

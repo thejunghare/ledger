@@ -6,6 +6,7 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/t">Transactions</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Transcations details</li>
                 </ol>
             </nav>

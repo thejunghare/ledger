@@ -57,7 +57,7 @@
                                     <div>{{ $transaction->date }}</div>
                                     <div>
                                         <span
-                                            class="{{ $transactionDetails->category_type == 'Income' ? 'text-success' : 'text-danger' }}">
+                                            class="">
                                             @php
                                                 $formattedAmount = number_format($transaction->amount, 2);
                                             @endphp
