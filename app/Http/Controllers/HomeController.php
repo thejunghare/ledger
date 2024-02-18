@@ -35,43 +35,62 @@ class HomeController extends Controller
         $username = $user->name;
         $words = explode(' ', $username);
 
-
         $firstLetters = '';
         foreach ($words as $word) {
             $firstLetters .= strtoupper($word[0]); // Convert to uppercase if needed
         }
 
+        $currentDate = now()->toDateString();
+
         // get the transaction count
-        $transactioncount = $user->transactions->count();
-        $transactions = $user->transactions;
+        $transactionCount = $user->transactions->count();
+
+        $transactions = $user->transactions->where('date', $currentDate);
+
+        $user_id = Auth::id();
+
+        $transactionDetails = Transaction::select(
+            'transactions.*',
+            'pay_mode.paymode_type',
+            'default_categories.category_name',
+            'default_category_types.category_type',
+        )
+            ->join('default_categories', 'transactions.category_id', '=', 'default_categories.id')
+            ->join('default_category_types', 'transactions.transaction_type_id', '=', 'default_category_types.id')
+            ->join('pay_mode', 'transactions.paymode_id', '=', 'pay_mode.id')
+            ->where('transactions.user_id', $user_id)
+
+            ->first();
 
         // get total
         $userId = Auth::id();
-        $currentdate = now()->toDateString();
+
+
+        $totalBudgetAmount = $user->budgets()
+            ->whereDate('date', $currentDate)
+            ->first();
+
+        $formattedTotalBudgetAmount = number_format($totalBudgetAmount->amount, 2);
 
         $totalIncomeAmount = Transaction::where('user_id', $userId)
             ->where('transaction_type_id', 1)
-            ->whereDate('date', $currentdate)
+            ->whereDate('date', $currentDate)
             ->sum('amount');
 
         $totalExpenseAmount = Transaction::where('user_id', $userId)
             ->where('transaction_type_id', 2)
-            ->whereDate('date', $currentdate)
+            ->whereDate('date', $currentDate)
             ->sum('amount');
 
-
         // get budget amount based on date & find balance
-
         $budget = $user->budgets()
-            ->whereDate('date', $currentdate)
+            ->whereDate('date', $currentDate)
             ->first();
 
         $getTransactionAmountBasedOnDate = $user->transactions()
             ->where('transaction_type_id', 2)
-            ->whereDate('date', $currentdate)
+            ->whereDate('date', $currentDate)
             ->sum('amount');
-
-
 
         $balance = 0;
         $formattedBalance = 0;
@@ -80,23 +99,18 @@ class HomeController extends Controller
             $amountBasedOnCurrentDate = $budget->amount;
             $balance = $amountBasedOnCurrentDate - $getTransactionAmountBasedOnDate;
 
-            $formattedBalance = number_format($balance);
+            $formattedBalance = number_format($balance, 2);
         }
-
 
         // format amount in thousands and hundred
         $amount = $totalExpenseAmount;
-        $formattedExpenseAmount = number_format($amount);
+        $formattedExpenseAmount = number_format($amount, 2);
 
         //format amount in thousands and hundred
         $amount = $totalIncomeAmount;
-        $formattedIncomeAmount = number_format($amount);
+        $formattedIncomeAmount = number_format($amount, 2);
 
-
-        // get the budget count
-        $budgetcount = $user->budgets->count();
-
-        return view('home', compact('firstLetters', 'transactioncount', 'budgetcount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount', 'formattedBalance'));
+        return view('home', compact('transactionDetails', 'formattedTotalBudgetAmount', 'firstLetters', 'transactionCount', 'transactions', 'formattedIncomeAmount', 'formattedExpenseAmount', 'formattedBalance'));
     }
 }
 
