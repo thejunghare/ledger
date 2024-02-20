@@ -32,7 +32,7 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="/group/budgets"> Group budgets</a></li>
+                    <li class="breadcrumb-item"><a href="/g/b"> Group budgets</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Budget details</li>
                 </ol>
             </nav>
