@@ -8,6 +8,7 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\GroupBudgetController;
 use App\Http\Controllers\PaymentModeController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\DefaultCategoriesTypes;
 use App\Http\Controllers\DefaultCategoriesController;
 use App\Http\Controllers\GroupBudgetDashboardController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -181,11 +182,13 @@ Route::resource('/g/b/t', GroupBudgetDashboardController::class)->names([
 Route::get('/paymode-options', [PaymentModeController::class, 'getOptions'])->name('paymode-options');
 // fetch categories
 Route::get('/categories-options', [DefaultCategoriesController::class, 'getCategoryOptions'])->name('category-options');
+// fetch categories type
+Route::get('/categories-type-options', [DefaultCategoriesTypes::class, 'getCategoryTypeOptions'])->name('category-type-options');
 
 /*
 |--------------------------------------------------------------------------
-| for test
+| for category
 |--------------------------------------------------------------------------
 */
 
-// Route::resource('/p/b', GroupBudgetController::class);
+Route::resource('/categories', DefaultCategoriesController::class);

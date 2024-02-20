@@ -30,7 +30,7 @@
                     <h1 class="mt-4">My Categories
                 </div>
                 <div>
-                    <a href="/c/create" class="fs-2">
+                    <a href="/categories/create" class="fs-2">
                         <i class="fas fa-plus text-primary"></i>
                     </a>
                 </div>
