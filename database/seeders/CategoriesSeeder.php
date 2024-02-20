@@ -17,6 +17,7 @@ class CategoriesSeeder extends Seeder
         DB::table("default_categories")->insert([
             // type income
             [
+                'default_category' => 1,
                 'category_type_id' => 1,
                 'category_name' => 'Other',
                 'created_at' => now(),
@@ -24,6 +25,7 @@ class CategoriesSeeder extends Seeder
             ],
             // type income
             [
+                'default_category' => 1,
                 'category_type_id' => 1,
                 'category_name' => 'Salary',
                 'created_at' => now(),
@@ -31,6 +33,7 @@ class CategoriesSeeder extends Seeder
             ],
             // type expense
             [
+                'default_category' => 1,
                 'category_type_id' => 2,
                 'category_name' => 'Other',
                 'created_at' => now(),
@@ -38,6 +41,7 @@ class CategoriesSeeder extends Seeder
             ],
             // type expense
             [
+                'default_category' => 1,
                 'category_type_id' => 2,
                 'category_name' => 'Food and Drinks',
                 'created_at' => now(),

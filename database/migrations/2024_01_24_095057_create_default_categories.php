@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('default_categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('isDefault');
             $table->unsignedBigInteger('category_type_id');
             $table->string('category_name');
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('default_budget_category');
+        Schema::dropIfExists('default_categories');
     }
 };
