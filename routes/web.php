@@ -192,3 +192,14 @@ Route::get('/categories-type-options', [DefaultCategoriesTypes::class, 'getCateg
 */
 
 Route::resource('/categories', DefaultCategoriesController::class);
+
+
+/*
+|--------------------------------------------------------------------------
+| Buy premium
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/premium', function () {
+    return view('/premium/index');
+});
