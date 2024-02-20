@@ -9,14 +9,14 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
-                    {{-- <li class="breadcrumb-item"><a href="/group/budget/{{ $budgetId }}">Group Budget</a></li>   --}}
+                    <li class="breadcrumb-item"><a href="/g/b/{{ $budgetId }}">Group Budget</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Add transaction</li>
                 </ol>
             </nav>
 
             <!-- form -->
             <form class="" method="POST"
-                action="{{ route('groupBudgetTransaction.update', [$transactionDetails->id]) }}">
+                action="{{ route('groupBudgetTransaction.update', [$transactionDetails->id, $budgetId]) }}">
                 @csrf
                 @method('PATCH')
                 {{-- @dd($errors->all()); --}}
@@ -75,17 +75,19 @@
 
                 {{-- budget id to add the transaction --}}
                 <div class="col">
-                    {{-- i want the id here --}}
-                     <input value="{{ $budgetId }}" hidden type="text" placeholder="Selected budget"
-                        class="form-control" value="{{ old($budgetId) ?? $transactionDetails->for_budget_id}}" id="date" name="for_budget_id" required>
+                    {{--  --}}
+                    <input value="{{ $budgetId }}" hidden type="text" placeholder="Selected budget"
+                        class="form-control" value="{{ $transactionDetails->for_budget_id }}" id="date"
+                        name="for_budget_id" required>
                 </div>
 
                 <div class="row g-3 mb-3">
                     {{-- date of transaction --}}
                     <div class="col">
-                        <input type="date" class="form-control @error('date') is-invalid @enderror" id="date"
-                            name="date" value="{{ old('date') ?? $transactionDetails->date }}" autocomplete="date"
-                            autofocus>
+                        <input type="date" class="form-control" id="date" name="date"
+                            value="{{ \Carbon\Carbon::parse($transactionDetails->date)->format('Y-m-d') }}" autofocus
+                            autocomplete="date">
+
                         @error('date')
                             <span role="alert" class="invalid-feedback">
                                 <strong>
@@ -147,7 +149,7 @@
 
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
 

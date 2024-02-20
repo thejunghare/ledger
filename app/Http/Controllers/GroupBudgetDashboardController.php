@@ -116,13 +116,13 @@ class GroupBudgetDashboardController extends Controller
         return redirect()->route('GroupBudget.show', $groupBudgetId)->with('success', 'Transaction added');
     }
 
-    public function edit($id, $budgetId)
+    public function edit($budgetId, $transactionId)
     {
         $userID = Auth::id();
 
         // get the transaction details
         $transactionDetails = GroupBudgetTransaction::
-            where('id', $id)
+            where('id', $transactionId)
             ->where('user_id', $userID)
             ->first();
 
@@ -131,13 +131,15 @@ class GroupBudgetDashboardController extends Controller
         }
 
         // Pass both variables to the view using compact
-        return view('groupBudgets.transaction.edit', compact('transactionDetails', 'budgetId'));
+        return view('groupBudgets.transaction.edit', compact('transactionDetails', 'budgetId', 'transactionId'));
     }
 
-
+    // FIXME:
     public function update(Request $request, $id)
     {
-        $request->validate([
+        // dd($request->all());
+
+        $validatedData = $request->validate([
             'transaction_type_id' => 'required',
             'for_budget_id' => 'required',
             'amount' => 'required|numeric|min:1',
@@ -152,11 +154,10 @@ class GroupBudgetDashboardController extends Controller
             return redirect()->back()->with('error', 'Transaction not found!');
         }
 
-        $groupBudgetId = $transaction->for_budget_id;
+        $groupBudgetId = $validatedData['for_budget_id'];
 
         $updated = $transaction->update($request->only([
             'transaction_type_id',
-            'for_budget_id',
             'amount',
             'date',
             'category_id',
@@ -167,7 +168,6 @@ class GroupBudgetDashboardController extends Controller
 
         return redirect()->route('groupBudget.show', $groupBudgetId)->with($updated ? 'success' : 'error', $message);
     }
-
 
     // delete the transactions from budget
     public function destroy($id)

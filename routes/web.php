@@ -165,9 +165,9 @@ Route::get('g/b/{groupTransaction}', [GroupBudgetDashboardController::class, 'sh
 
 Route::get('/g/b/{budgetId}/t/create', [GroupBudgetDashboardController::class, 'create'])->name('groupBudgetTransaction.create');
 Route::get('/g/b/{budgetId}/t/{transactionId}/edit', [GroupBudgetDashboardController::class, 'edit'])->name('groupBudgetTransaction.edit');
+Route::patch('/g/b/{budgetId}/t/{transactionId}', [GroupBudgetDashboardController::class, 'update'])->name('groupBudgetTransaction.update');
 Route::resource('/g/b/t', GroupBudgetDashboardController::class)->names([
     'store' => 'groupBudgetTransaction.store',
-    'update' => 'groupBudgetTransaction.update',
     'destroy' => 'groupBudgetTransaction.destroy',
 ]);
 
