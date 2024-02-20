@@ -170,6 +170,8 @@
                             paymodeSelectOption.append('<option value="' + option.id + '">' + option
                                 .paymode_type + '</option>');
                         });
+
+                        paymodeSelectOption.val('{{$transactionDetails->paymode_id}}')
                     },
                     error: function(error) {
                         console.error('Error fetching payment options:', error);
@@ -180,20 +182,24 @@
                     url: '/categories-options',
                     method: 'GET',
                     success: function(data) {
+                        var categorySelectOption = $('#category-options');
                         categorySelectOption.empty();
                         categorySelectOption.append(
                             '<option value="" disabled selected>Select category mode</option>');
 
                         $.each(data, function(index, option) {
                             categorySelectOption.append('<option value="' + option.id + '">' +
-                                option
-                                .category_name + '</option>');
+                                option.category_name + '</option>');
                         });
+
+                        // Set the selected option based on the value from the database
+                        categorySelectOption.val('{{ $transactionDetails->category_id }}');
                     },
                     error: function(error) {
                         console.error('Error fetching payment options:', error);
                     }
                 });
+
             });
         </script>
 
