@@ -10,12 +10,15 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center" style="width: 40%">
                         <div>
-                            <button type="button"
-                                class="btn btn-light {{ $categories->isDefault ? 'disabled' : '' }}">Edit</button>
+                            <a href="{{ route('categories.edit', $categories->id) }}"
+                                class="btn btn-light {{ $categories->isDefault ? 'disabled' : '' }}">Edit</a>
                         </div>
                         <div>
-                            <button type="button"
-                                class="btn btn-dark {{ $categories->isDefault ? 'disabled' : '' }}">Delete</button>
+                            <form action="{{ route('categories.destroy', $categories->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-dark" {{ $categories->isDefault ? 'disabled' : '' }}>Delete</button>
+                            </form>
                         </div>
                     </div>
                 </div>
