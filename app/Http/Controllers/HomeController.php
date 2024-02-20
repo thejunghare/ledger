@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class HomeController extends Controller
 {
     /**
@@ -68,6 +70,12 @@ class HomeController extends Controller
         $totalBudgetAmount = $user->budgets()
             ->whereDate('date', $currentDate)
             ->first();
+
+        if (!$totalBudgetAmount) {
+            $totalBudgetAmount = new Budget();
+            $totalBudgetAmount->amount = null;
+            $totalBudgetAmount->date = null;
+        }
 
         $formattedTotalBudgetAmount = number_format($totalBudgetAmount->amount, 2);
 
