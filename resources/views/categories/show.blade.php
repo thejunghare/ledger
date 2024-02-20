@@ -2,7 +2,7 @@
 
 @section('content')
     <main class="">
-        {{--  @if (session('success'))
+        @if (session('success'))
             <div class="position-relative mt-2">
                 <div class="z-3 position-absolute top-0 start-50 translate-middle-x" id="alertsuccess">
                     <div class="alert alert-success fade show" role="alert" aria-live="polite">
@@ -22,7 +22,9 @@
                     </div>
                 </div>
             </div>
-        @endif --}}
+        @endif
+
+
 
         <div class="container-fluid px-4">
             <div class="d-flex justify-content-between align-items-end">
@@ -35,6 +37,13 @@
                     </a>
                 </div>
             </div>
+
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                </ol>
+            </nav>
 
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Features</li>
@@ -87,6 +96,20 @@
                     const filterValue = $(this).val();
                     handleRadioChange(filterValue);
                 });
+
+                const successAlert = document.querySelector('.alert-success');
+                if (successAlert) {
+                    setTimeout(() => {
+                        successAlert.classList.remove('show');
+                    }, 3000);
+                }
+
+                const errorAlert = document.querySelector('.alert-danger');
+                if (errorAlert) {
+                    setTimeout(() => {
+                        errorAlert.classList.remove('show');
+                    }, 3000);
+                }
             });
         </script>
     </main>

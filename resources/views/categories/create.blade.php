@@ -8,8 +8,16 @@
                 <li class="breadcrumb-item active">Features</li>
             </ol>
 
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/categories">Categories</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">add categories</li>
+                </ol>
+            </nav>
+
             <!-- form -->
-            <form class="py-4 " method="post" action="{{ route('categories.store') }}" id="addCategoryForm">
+            <form class=" " method="post" action="{{ route('categories.store') }}" id="addCategoryForm">
                 @csrf
                 <div class="col input-group mb-3">
                     <input id="isDefault" type="number" class="form-control" name="isDefault" value="0" hidden>
@@ -25,17 +33,16 @@
                             <option value="" disabled selected>Select category</option>
                         </select>
                         @error('category_name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="col input-group mb-3">
                         <!-- category name -->
                         <input id="category_name" type="text"
                             class="form-control @error('category_name') is-invalid @enderror" name="category_name"
-                            placeholder="Enter category name"
-                            autocomplete="category_name" autofocus>
+                            placeholder="Enter category name" autocomplete="category_name" autofocus>
 
                         @error('category_name')
                             <span class="invalid-feedback" role="alert">
