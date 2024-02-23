@@ -31,7 +31,7 @@ Route::get('/', function () {
 });
 
 Route::get('/email/verify', function () {
-    return view('auth.verify-email');
+    return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
@@ -47,13 +47,14 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Auth::routes();
+// Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Dashboard
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['verified'])->name('home');
 
 //show fetched categories
-Route::get('/categories', [DefaultCategoriesController::class, 'index'])->name('DefaultCategories.show');
+Route::get('/categories', [DefaultCategoriesController::class, 'index'])    ->name('DefaultCategories.show');
 
 Route::get('/fetchcategories', [DefaultCategoriesController::class, 'showRecords'])->name('DefaultCategories.index');
 

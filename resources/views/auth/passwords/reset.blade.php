@@ -1,7 +1,7 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
+{{-- @extends('layouts.app')
+@section('content') --}}
+<link href="/css/styles.css" rel="stylesheet" />
+<div class="container mt-10">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -62,4 +62,4 @@
         </div>
     </div>
 </div>
-@endsection
+{{-- @endsection --}}
