@@ -61,6 +61,7 @@ class HomeController extends Controller
             ->join('default_category_types', 'transactions.transaction_type_id', '=', 'default_category_types.id')
             ->join('pay_mode', 'transactions.paymode_id', '=', 'pay_mode.id')
             ->where('transactions.date', $currentDate)
+            ->where('transactions.user_id', auth()->user()->id)
             ->get();
 
 
