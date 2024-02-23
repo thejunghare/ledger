@@ -38,7 +38,7 @@
                 </div>
 
                 {{-- <example-component></example-component> --}}
-                <div class="form-check form-switch  mb-2">
+                {{-- <div class="form-check form-switch  mb-2">
                     <input class="form-check-input" type="checkbox" role="switch" id="switch" />
                     <label class="form-check-label" for="switch">Set category wise budget</label>
                 </div>
@@ -55,7 +55,7 @@
                         <label for="inputPassword4" class="form-label">Amount</label>
                         <input type="password" class="form-control" id="inputPassword4">
                     </div>
-                </div>
+                </div> --}}
 
                 <button type="submit" class="btn btn-primary rounded-2" id="addbudget">Add budget</button>
             </form>
